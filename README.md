@@ -24,6 +24,17 @@ I am looking for a team where I can apply analytics to real business problems wh
 | [01 - COVID-19 Global Exploration](./01-covid19-sql-exploration) | SQL (DuckDB / PostgreSQL), CTE, Window Functions, Views | Cleaning a 630k-row time series, fatality and infection rates, rolling vaccination progress, BI-ready views |
 | [02 - Superstore Sales Dashboard](./02-superstore-excel-dashboard) | Excel (PivotTables, Pivot Charts, Slicers, Timeline) | Data cleaning, 6 PivotTables and an interactive dashboard that finds which products and discounts lose money |
 
+## More projects (separate repositories)
+
+| Project | Data | What it shows |
+|---------|------|---------------|
+| [Online Retail Insights](https://github.com/Corgi-coder99/Online-Retail-Insights) ([live report](https://corgi-coder99.github.io/Online-Retail-Insights/)) | Real: UCI Online Retail II, about 1M order lines | Reproducible pipeline in Python and DuckDB: logged cleaning rules, RFM segments, cohort retention, basket analysis, and a revenue forecast whose accuracy is backtested. It reports honestly where a model failed to beat a simple baseline. |
+| [Lumi E-commerce Dashboard](https://github.com/Corgi-coder99/Lumi-Ecommerce-Dashboard) ([live demo](https://corgi-coder99.github.io/Lumi-Ecommerce-Dashboard/)) | Simulated French fashion-accessories store | MySQL / DuckDB star schema built from messy multi-channel exports (VAT, time zones, duplicates), 8 SQL analyses with CTEs and window functions, an interactive HTML dashboard and a Power BI model specification. Totals reconciled to the cent. |
+| [Intent Pricing Optimizer](https://github.com/Corgi-coder99/Intent-Pricing-Optimizer) | EU/UK market data, simulated sessions | End-to-end data science project: review signals, a LightGBM price-elasticity model, a pricing recommendation agent, a bilingual (English/French) dashboard and a REST API. The README states clearly which parts are validated on real data and which are not. |
+| [Bếp Finance](https://github.com/Corgi-coder99/Restaurant-Finance) | Sample data | Restaurant operations and financial analytics application (point of sale for cashiers, margin analysis across branches for owners). |
+
+My personal website: [corgi-coder99.github.io](https://corgi-coder99.github.io/)
+
 ## Skills
 
 - **Data analysis:** data cleaning, exploratory data analysis, descriptive statistics, KPIs, reporting, dashboards, data quality checks
@@ -44,5 +55,6 @@ These four projects are not in this repository. Details are available on request
 
 ## Contact
 
+- Website: [corgi-coder99.github.io](https://corgi-coder99.github.io/)
 - LinkedIn: [linkedin.com/in/huudatvu64](https://www.linkedin.com/in/huudatvu64)
 - Email: datvuhuu26@gmail.com
