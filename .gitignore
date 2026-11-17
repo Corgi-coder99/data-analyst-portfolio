@@ -4,3 +4,5 @@
 01-covid19-sql-exploration/data/compact.csv
 01-covid19-sql-exploration/data/export_*.csv
 __pycache__/
+# Excel lock/temp files
+~$*

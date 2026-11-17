@@ -56,6 +56,6 @@ SELECT date, new_cases, new_deaths, total_cases, total_deaths,
 FROM covid_clean
 WHERE country = 'Vietnam';
 
--- Export examples (DuckDB) / Xuat CSV cho Tableau:
+-- Export examples for Tableau (DuckDB):
 -- COPY (SELECT * FROM v_country_summary) TO 'data/export_country_summary.csv' (HEADER);
 -- COPY (SELECT * FROM v_global_monthly)  TO 'data/export_global_monthly.csv'  (HEADER);

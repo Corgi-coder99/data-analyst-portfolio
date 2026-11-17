@@ -6,7 +6,7 @@
    ===================================================================== */
 
 -- ---------------------------------------------------------------------
--- 1. Load raw file / Nap du lieu tho
+-- 1. Load the raw file
 -- PostgreSQL: create covid_raw with matching columns, then use psql \copy covid_raw FROM 'data/compact.csv' CSV HEADER
 -- ---------------------------------------------------------------------
 CREATE OR REPLACE TABLE covid_raw AS
@@ -23,7 +23,6 @@ SELECT COUNT(*)                       AS total_rows,
 FROM covid_raw;
 
 -- Which "entities" are NOT real countries? (aggregates have continent = NULL)
--- Cac thuc the khong phai quoc gia (World, Asia, High-income countries, ...)
 SELECT DISTINCT country
 FROM covid_raw
 WHERE continent IS NULL

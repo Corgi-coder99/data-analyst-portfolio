@@ -7,7 +7,7 @@
 
 -- =====================================================================
 -- Q1. Case Fatality Rate by country (total_deaths / total_cases)
---     Ty le tu vong theo quoc gia. Use the LATEST row per country because
+--     Use the LATEST row per country because
 --     total_* columns are cumulative.
 -- =====================================================================
 WITH latest AS (
@@ -23,7 +23,7 @@ WHERE rn = 1 AND total_cases >= 100000          -- ignore tiny samples
 ORDER BY case_fatality_rate_pct DESC NULLS LAST
 LIMIT 15;
 
--- Q1b. Vietnam spotlight / Diem nhan ca nhan: Viet Nam
+-- Q1b. Vietnam spotlight
 WITH latest AS (
     SELECT *, ROW_NUMBER() OVER (PARTITION BY country ORDER BY date DESC) AS rn
     FROM covid_clean WHERE total_cases IS NOT NULL
@@ -36,7 +36,6 @@ WHERE rn = 1 AND country = 'Vietnam';
 
 -- =====================================================================
 -- Q2. Infection rate vs population (MAX(total_cases) / population)
---     Ty le nhiem tren tong dan so
 -- =====================================================================
 SELECT country, MAX(population) AS population,
        MAX(total_cases)         AS peak_total_cases,
@@ -47,7 +46,7 @@ HAVING MAX(population) >= 1000000          -- skip micro-states
 ORDER BY pct_population_infected DESC NULLS LAST
 LIMIT 15;
 
--- Q2b. Same metric bucketed with CASE WHEN / Phan nhom muc do anh huong
+-- Q2b. Same metric bucketed with CASE WHEN
 WITH c AS (
     SELECT country,
            MAX(total_cases) * 100.0 / NULLIF(MAX(population), 0) AS pct_infected
@@ -82,7 +81,7 @@ ORDER BY continent, rk;
 
 -- =====================================================================
 -- Q3. Continent breakdown: cumulative deaths
---     Tong ca tu vong theo chau luc. Take MAX per country FIRST, then SUM,
+--     Take MAX per country FIRST, then SUM,
 --     otherwise cumulative values would be added up repeatedly.
 -- =====================================================================
 WITH country_deaths AS (
@@ -100,7 +99,7 @@ GROUP BY continent
 ORDER BY total_deaths DESC;
 
 -- =====================================================================
--- Q4. Global numbers over time / Con so toan cau theo thoi gian
+-- Q4. Global numbers over time
 -- =====================================================================
 -- Q4a. Monthly global new cases, new deaths, death rate, month-over-month change (LAG)
 WITH monthly AS (
@@ -136,7 +135,6 @@ FROM covid_clean;
 
 -- =====================================================================
 -- Q5. Rolling vaccination count (Window function + CTE)
---     Tien do tiem chung luy ke
 -- =====================================================================
 WITH rolling AS (
     SELECT country, continent, date, population, new_vaccinations,
@@ -188,7 +186,6 @@ LIMIT 10;
 
 -- Q5d. Data-quality reconciliation: does the rolling sum of new_vaccinations match the
 --      reported cumulative total_vaccinations? Gaps in daily reporting make it UNDER-count.
---      Doi chieu: tong tich luy new_vaccinations so voi total_vaccinations chinh thuc.
 WITH rolled AS (
     SELECT country, SUM(new_vaccinations) AS sum_new_vacc, MAX(total_vaccinations) AS reported_total
     FROM covid_clean GROUP BY country

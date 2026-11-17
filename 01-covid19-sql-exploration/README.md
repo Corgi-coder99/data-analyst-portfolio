@@ -1,7 +1,5 @@
 # COVID-19 Global Data Exploration with SQL
 
-> Tiếng Việt: Dự án dùng SQL (CTE, Window Functions, Views) để phân tích 6+ năm dữ liệu COVID-19 của 237 quốc gia từ Our World in Data, trả lời 6 câu hỏi nghiệp vụ và xuất sẵn các View cho Tableau / Power BI.
-
 ## 1. Project Overview
 
 As a data analyst supporting a public-health policy team, I was asked to answer: **where did COVID-19 hit hardest, how deadly was it over time, and how fast did countries vaccinate?** Everything is done in SQL on a ~580k-row country-by-day time series, then packaged as BI-ready views.
