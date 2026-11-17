@@ -1,14 +1,21 @@
 # Huu Dat VU | Data Analyst Portfolio
 
-**Data Analysis / Data Science student looking for a 24-month work-study contract (alternance) starting October 2026, Île-de-France.**
+**Data Analysis / Data Science student open to an internship (stage) or a 24-month work-study contract (alternance) in France, starting October 2026. Based in Île-de-France.**
 
 ## About me
 
-I turn messy data into clear decisions. I am currently studying for an **MBA in Data Science & Business Intelligence at EPITECH Paris (2026-2028)**, after an **MBA in Entrepreneurship & Business Development (INCOMSUP, Paris, 2024-2026)** and a **civil engineering degree in infrastructure project management** (University of Transport Technology, Vietnam, 2017-2022).
+Hello, I'm Huu Dat. I turn messy data into clear decisions, and I got there by an unusual route.
 
-That mix is what I bring to analytics: a business and operations background (cost analysis, budgeting, planning, KPI tracking, risk management) combined with a growing technical toolkit (SQL, Excel, Python). Before moving into data, I worked on logistics optimization and sales tracking in France, where comparing itineraries cut travel costs by 50-70%, and on infrastructure projects in Vietnam, where I helped plan and monitor 6 of 10 work packages.
+I started as a civil engineer in infrastructure project management in Vietnam, where my daily work was planning work packages, controlling budgets, tracking indicators and managing risk. I then moved to France and studied an **MBA in Entrepreneurship & Business Development (INCOMSUP, Paris, 2024-2026)**, working at the same time as an operations and logistics project officer. There I compared itineraries and optimized logistics, which cut travel costs by 50-70%, and I tracked sales trends and commercial indicators. Along the way I kept noticing that the best decisions came from the people who could actually read the numbers, so I am now doing an **MBA in Data Science & Business Intelligence at EPITECH Paris (2026-2028)**.
 
-**I care about** asking the right business question first, checking data quality before trusting a number, and presenting findings so a non-technical reader can act on them.
+What I bring to a data team:
+
+- **Business sense first.** I start from the decision someone has to make, then choose the metric, not the other way around.
+- **Data quality habits.** In my projects I profile the data, check for duplicates and gaps, and reconcile totals before trusting a result. For example, in the COVID-19 project I found that a country's daily vaccination figures covered only about half of its official total, and changed the analysis accordingly.
+- **Clear communication.** Insights are written for a non-technical reader and finish with a recommendation someone can act on.
+- **International and multilingual.** I work comfortably in French, English and Vietnamese.
+
+I am looking for a team where I can apply analytics to real business problems while growing my Python, SQL and Business Intelligence skills.
 
 ## Projects in this repository
 
