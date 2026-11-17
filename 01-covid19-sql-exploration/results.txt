@@ -1,0 +1,267 @@
+
+### 01_data_cleaning: SELECT COUNT(*) AS total_rows, COUNT(DISTINCT country) AS distinct_entities, MIN
+total_rows | distinct_entities | first_date | last_date | rows_without_continent
+629868 | 262 | 2020-01-01 | 2026-10-18 | 46024
+
+### 01_data_cleaning: SELECT DISTINCT country FROM covid_raw WHERE continent IS NULL ORDER BY country
+country
+Africa
+Asia
+Asia excl. China
+England
+England and Wales
+Europe
+European Union (27)
+High-income countries
+Low-income countries
+Lower-middle-income countries
+North America
+Northern Ireland
+Oceania
+Scotland
+South America
+Summer Olympics 2020
+Upper-middle-income countries
+Wales
+Winter Olympics 2022
+World
+World excl. China
+World excl. China and South Korea
+World excl. China, South Korea, Japan and Singapore
+
+### 01_data_cleaning: SELECT COUNT(*) AS negative_new_cases FROM covid_raw WHERE new_cases < 0
+negative_new_cases
+0
+
+### 01_data_cleaning: SELECT COUNT(*) AS negative_new_deaths FROM covid_raw WHERE new_deaths < 0
+negative_new_deaths
+0
+
+### 01_data_cleaning: SELECT country, date, COUNT(*) AS dup FROM covid_raw GROUP BY 1, 2 HAVING COUNT(
+country | date | dup
+
+### 01_data_cleaning: SELECT COUNT(*) AS clean_rows, COUNT(DISTINCT country) AS countries FROM covid_c
+clean_rows | countries
+581316 | 237
+
+### 01_data_cleaning: SELECT COUNT(*) AS rows_, COUNT(DISTINCT (country, date)) AS unique_keys FROM co
+rows_ | unique_keys
+581316 | 581316
+
+### 02_eda_queries: WITH latest AS ( SELECT *, ROW_NUMBER() OVER (PARTITION BY country ORDER BY date
+country | continent | total_cases | total_deaths | case_fatality_rate_pct
+Peru | South America | 4533878 | 221073 | 4.88
+Egypt | Africa | 516023 | 24830 | 4.81
+Mexico | North America | 7632767 | 335205 | 4.39
+Bosnia and Herzegovina | Europe | 404289 | 16419 | 4.06
+Afghanistan | Asia | 235214 | 7998 | 3.4
+Ecuador | South America | 1082356 | 36064 | 3.33
+Myanmar | Asia | 643401 | 19494 | 3.03
+Bulgaria | Europe | 1341082 | 38778 | 2.89
+North Macedonia | Europe | 352093 | 9991 | 2.84
+Paraguay | South America | 735759 | 19880 | 2.7
+Tunisia | Africa | 1153361 | 29423 | 2.55
+Algeria | Africa | 272440 | 6881 | 2.53
+South Africa | Africa | 4073188 | 102595 | 2.52
+Sri Lanka | Asia | 672812 | 16907 | 2.51
+Namibia | Africa | 172557 | 4110 | 2.38
+
+### 02_eda_queries: WITH latest AS ( SELECT *, ROW_NUMBER() OVER (PARTITION BY country ORDER BY date
+country | as_of | total_cases | total_deaths | population | case_fatality_rate_pct | infected_pct_of_population
+Vietnam | 2026-10-18 | 11624000 | 43206 | 99680656 | 0.372 | 11.66
+
+### 02_eda_queries: SELECT country, MAX(population) AS population, MAX(total_cases) AS peak_total_ca
+country | population | peak_total_cases | pct_population_infected
+Austria | 9064678 | 6083825 | 67.12
+South Korea | 51782515 | 34571873 | 66.76
+Slovenia | 2115231 | 1367017 | 64.63
+France | 66277412 | 39064913 | 58.94
+Denmark | 5902901 | 3454110 | 58.52
+Greece | 10412481 | 5874300 | 56.42
+Portugal | 10417074 | 5673129 | 54.46
+Cyprus | 1331376 | 719150 | 54.02
+Singapore | 5649888 | 3006155 | 53.21
+Israel | 9103143 | 4841841 | 53.19
+New Zealand | 5131731 | 2668236 | 51.99
+Latvia | 1881059 | 977810 | 51.98
+Lithuania | 2816923 | 1448722 | 51.43
+Switzerland | 8792180 | 4492849 | 51.1
+Georgia | 3794782 | 1864337 | 49.13
+
+### 02_eda_queries: WITH c AS ( SELECT country, MAX(total_cases) * 100.0 / NULLIF(MAX(population), 0
+infection_band | countries
+1. < 5% | 68
+2. 5-20% | 45
+3. 20-40% | 22
+4. >= 40% | 23
+No data | 3
+
+### 02_eda_queries: WITH c AS ( SELECT continent, country, MAX(total_cases) * 100.0 / NULLIF(MAX(pop
+continent | rk | country | pct_infected
+Africa | 1 | Mauritius | 26.04
+Africa | 2 | Botswana | 13.55
+Africa | 3 | Tunisia | 9.52
+Asia | 1 | South Korea | 66.76
+Asia | 2 | Singapore | 53.21
+Asia | 3 | Israel | 53.19
+Europe | 1 | Austria | 67.12
+Europe | 2 | Slovenia | 64.63
+Europe | 3 | France | 58.94
+North America | 1 | Puerto Rico | 38.65
+North America | 2 | United States | 30.29
+North America | 3 | Costa Rica | 24.48
+Oceania | 1 | New Zealand | 51.99
+Oceania | 2 | Australia | 45.27
+Oceania | 3 | Papua New Guinea | 0.46
+South America | 1 | Uruguay | 30.77
+South America | 2 | Chile | 27.67
+South America | 3 | Argentina | 22.29
+
+### 02_eda_queries: WITH country_deaths AS ( SELECT continent, country, MAX(total_deaths) AS deaths,
+continent | total_deaths | population | deaths_per_million
+Europe | 2112331 | 748296168 | 2823.0
+North America | 1718967 | 604356255 | 2844.0
+Asia | 1637931 | 4746329727 | 347.0
+South America | 1358389 | 430492816 | 3155.0
+Africa | 258290 | 1445862695 | 183.0
+Oceania | 33173 | 45049680 | 736.0
+
+### 02_eda_queries: WITH monthly AS ( SELECT DATE_TRUNC('month', date) AS month, SUM(new_cases) AS n
+month | new_cases | new_deaths | death_rate_pct | cases_mom_change_pct
+2020-01-01 | 9823 | 219 | 2.23 | None
+2020-02-01 | 74678 | 2711 | 3.63 | 660.2
+2020-03-01 | 697500 | 40659 | 5.83 | 834.0
+2020-04-01 | 2221858 | 193539 | 8.71 | 218.5
+2020-05-01 | 2888818 | 164339 | 5.69 | 30.0
+2020-06-01 | 4261987 | 153640 | 3.6 | 47.5
+2020-07-01 | 6967210 | 184404 | 2.65 | 63.5
+2020-08-01 | 8285836 | 193838 | 2.34 | 18.9
+2020-09-01 | 8632653 | 168302 | 1.95 | 4.2
+2020-10-01 | 11770202 | 177313 | 1.51 | 36.3
+2020-11-01 | 17714232 | 297054 | 1.68 | 50.5
+2020-12-01 | 18800230 | 360669 | 1.92 | 6.1
+2021-01-01 | 20045921 | 444768 | 2.22 | 6.6
+2021-02-01 | 11017580 | 303192 | 2.75 | -45.0
+2021-03-01 | 14165084 | 278813 | 1.97 | 28.6
+2021-04-01 | 21961957 | 370532 | 1.69 | 55.0
+2021-05-01 | 20502780 | 387884 | 1.89 | -6.6
+2021-06-01 | 11399242 | 268870 | 2.36 | -44.4
+2021-07-01 | 15580021 | 268923 | 1.73 | 36.7
+2021-08-01 | 20081800 | 308463 | 1.54 | 28.9
+2021-09-01 | 16035345 | 256593 | 1.6 | -20.1
+2021-10-01 | 13501959 | 219319 | 1.62 | -15.8
+2021-11-01 | 15273439 | 214229 | 1.4 | 13.1
+2021-12-01 | 23501708 | 215209 | 0.92 | 53.9
+2022-01-01 | 91776577 | 248832 | 0.27 | 290.5
+2022-02-01 | 58930980 | 280254 | 0.48 | -35.8
+2022-03-01 | 48881435 | 184599 | 0.38 | -17.1
+2022-04-01 | 25228136 | 84550 | 0.34 | -48.4
+2022-05-01 | 17070570 | 51006 | 0.3 | -32.3
+2022-06-01 | 16415310 | 41138 | 0.25 | -3.8
+2022-07-01 | 31234316 | 68260 | 0.22 | 90.3
+2022-08-01 | 24469248 | 69987 | 0.29 | -21.7
+2022-09-01 | 14103877 | 47499 | 0.34 | -42.4
+2022-10-01 | 13681273 | 50566 | 0.37 | -3.0
+2022-11-01 | 11236659 | 42049 | 0.37 | -17.9
+2022-12-01 | 90982722 | 80068 | 0.09 | 709.7
+2023-01-01 | 23030561 | 62123 | 0.27 | -74.7
+2023-02-01 | 4831191 | 96203 | 1.99 | -79.0
+2023-03-01 | 3822161 | 28161 | 0.74 | -20.9
+2023-04-01 | 3250214 | 24638 | 0.76 | -15.0
+2023-05-01 | 2064498 | 16646 | 0.81 | -36.5
+2023-06-01 | 913077 | 7917 | 0.87 | -55.8
+2023-07-01 | 1302070 | 4674 | 0.36 | 42.6
+2023-08-01 | 1501686 | 7876 | 0.52 | 15.3
+2023-09-01 | 643212 | 9536 | 1.48 | -57.2
+2023-10-01 | 789446 | 14000 | 1.77 | 22.7
+2023-11-01 | 897186 | 11474 | 1.28 | 13.6
+2023-12-01 | 1357320 | 14402 | 1.06 | 51.3
+2024-01-01 | 743090 | 17301 | 2.33 | -45.3
+2024-02-01 | 320520 | 7583 | 2.37 | -56.9
+2024-03-01 | 287397 | 5139 | 1.79 | -10.3
+2024-04-01 | 175192 | 3701 | 2.11 | -39.0
+2024-05-01 | 141961 | 2060 | 1.45 | -19.0
+2024-06-01 | 163900 | 2545 | 1.55 | 15.5
+2024-07-01 | 277504 | 5331 | 1.92 | 69.3
+2024-08-01 | 286009 | 6270 | 2.19 | 3.1
+2024-09-01 | 451240 | 6295 | 1.4 | 57.8
+2024-10-01 | 265168 | 5339 | 2.01 | -41.2
+2024-11-01 | 195173 | 3118 | 1.6 | -26.4
+2024-12-01 | 236414 | 4448 | 1.88 | 21.1
+2025-01-01 | 165594 | 5044 | 3.05 | -30.0
+2025-02-01 | 142528 | 3664 | 2.57 | -13.9
+2025-03-01 | 68072 | 2502 | 3.68 | -52.2
+2025-04-01 | 62353 | 2096 | 3.36 | -8.4
+2025-05-01 | 339859 | 1202 | 0.35 | 445.1
+2025-06-01 | 251686 | 1277 | 0.51 | -25.9
+2025-07-01 | 90922 | 1361 | 1.5 | -63.9
+2025-08-01 | 96987 | 1637 | 1.69 | 6.7
+2025-09-01 | 193443 | 2918 | 1.51 | 99.5
+2025-10-01 | 125788 | 1666 | 1.32 | -35.0
+2025-11-01 | 76544 | 1165 | 1.52 | -39.1
+2025-12-01 | 65955 | 1900 | 2.88 | -13.8
+2026-01-01 | 51143 | 2215 | 4.33 | -22.5
+2026-02-01 | 51947 | 1728 | 3.33 | 1.6
+2026-03-01 | 40138 | 1368 | 3.41 | -22.7
+2026-04-01 | 15560 | 614 | 3.95 | -61.2
+2026-05-01 | 14106 | 380 | 2.69 | -9.3
+2026-06-01 | 24960 | 264 | 1.06 | 76.9
+2026-07-01 | 42587 | 261 | 0.61 | 70.6
+2026-08-01 | 78442 | 356 | 0.45 | 84.2
+2026-09-01 | 93341 | 808 | 0.87 | 19.0
+
+### 02_eda_queries: WITH monthly AS ( SELECT DATE_TRUNC('month', date) AS month, SUM(new_cases) AS c
+metric | month | value
+Peak cases month | 2022-01-01 | 91776577
+Peak deaths month | 2021-01-01 | 444768
+
+### 02_eda_queries: SELECT SUM(new_cases) AS total_cases, SUM(new_deaths) AS total_deaths, ROUND(SUM
+total_cases | total_deaths | global_death_rate_pct
+779466210 | 7123838 | 0.91
+
+### 02_eda_queries: WITH rolling AS ( SELECT country, continent, date, population, new_vaccinations,
+country | date | population | new_vaccinations | rolling_doses | daily_sum_doses_per_100 | reported_total_doses_per_100
+Vietnam | 2021-06-30 | 99680656 | 183010 | 3076826 | 3.09 | 3.79
+Vietnam | 2021-12-31 | 99680656 | 0 | 108158524 | 108.51 | None
+Vietnam | 2022-06-30 | 99680656 | 550359 | 140141109 | 140.59 | 233.42
+Vietnam | 2022-12-31 | 99680656 | 0 | 140207439 | 140.66 | None
+Vietnam | 2023-06-30 | 99680656 | 0 | 140207439 | 140.66 | 267.35
+
+### 02_eda_queries: WITH latest AS ( SELECT country, continent, population, MAX(people_vaccinated) A
+country | continent | pct_one_dose | pct_fully_vaccinated
+Qatar | Asia | 98.6 | 98.6
+United Arab Emirates | Asia | 97.5 | 95.6
+Singapore | Asia | 93.6 | 92.9
+Hong Kong | Asia | 92.7 | 91.1
+Nicaragua | North America | 95.2 | 91.0
+Cuba | North America | 97.7 | 90.9
+Chile | South America | 92.5 | 90.5
+China | Asia | 92.5 | 90.1
+Taiwan | Asia | 93.5 | 88.8
+Vietnam | Asia | 90.8 | 86.2
+Costa Rica | North America | 91.5 | 86.0
+Peru | South America | 91.3 | 85.8
+Uruguay | South America | 88.8 | 85.6
+South Korea | Asia | 86.4 | 85.6
+Portugal | Europe | 94.3 | 85.5
+
+### 02_eda_queries: WITH first_dose AS ( SELECT country, MIN(date) AS start_date FROM covid_clean WH
+country | start_date | half_date | days_to_50pct
+Ireland | 2021-05-20 | 2021-06-24 | 35
+Israel | 2020-12-19 | 2021-02-24 | 67
+Mongolia | 2021-02-25 | 2021-05-12 | 76
+Uruguay | 2021-02-27 | 2021-05-26 | 88
+Cuba | 2021-05-31 | 2021-08-31 | 92
+United Kingdom | 2021-01-10 | 2021-04-28 | 108
+Qatar | 2021-01-28 | 2021-05-31 | 123
+Bahrain | 2020-12-23 | 2021-05-06 | 134
+Hungary | 2020-12-28 | 2021-05-20 | 143
+Chile | 2020-12-24 | 2021-05-24 | 151
+
+### 02_eda_queries: WITH rolled AS ( SELECT country, SUM(new_vaccinations) AS sum_new_vacc, MAX(tota
+country | sum_new_vacc | reported_total | rolling_as_pct_of_reported
+Brazil | 460591607 | 516237120 | 89.2
+Germany | 192197041 | 193241460 | 99.5
+India | 2112144067 | 2206868000 | 95.7
+United States | 676683162 | 676728770 | 100.0
+Vietnam | 140207439 | 266492140 | 52.6

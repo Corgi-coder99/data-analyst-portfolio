@@ -1,0 +1,6 @@
+# Large raw data and local database - download with the commands in each project README
+*.duckdb
+*.duckdb.wal
+01-covid19-sql-exploration/data/compact.csv
+01-covid19-sql-exploration/data/export_*.csv
+__pycache__/
