@@ -24,8 +24,8 @@ Deliverables: a cleaned star-schema dataset ready for Power BI, DAX measures, a 
 
 ```text
 data/processed/    star schema CSVs: fact_route_month, fact_delay_cause, dim_route, dim_date
-scripts/           download_data.py, clean_and_model.py, build_dashboard.py
-powerbi/           measures.dax, sncf_theme.json
+scripts/           download_data.py, clean_and_model.py, build_dashboard.py, make_pbip.py
+powerbi/           TGV_Punctuality.pbip (prebuilt model), measures.dax, sncf_theme.json
 docs/              POWERBI_BUILD_GUIDE.md, DATA_QUALITY_LOG.md, LINKEDIN_POST.md
 dashboard/         index.html (generated), template.html
 assets/            dashboard screenshots
@@ -84,4 +84,4 @@ Full log with row counts: [`docs/DATA_QUALITY_LOG.md`](./docs/DATA_QUALITY_LOG.m
 
 ## 7. Build the Power BI report
 
-See [`docs/POWERBI_BUILD_GUIDE.md`](./docs/POWERBI_BUILD_GUIDE.md): load the four CSVs, create the four relationships, paste [`powerbi/measures.dax`](./powerbi/measures.dax), import the theme and build the three pages. Reference values at the end of the guide let you check your report.
+Open [`powerbi/TGV_Punctuality.pbip`](./powerbi/TGV_Punctuality.pbip), a Power BI Project with the model, relationships and all 24 DAX measures already in place, then build the three pages with [`docs/POWERBI_BUILD_GUIDE.md`](./docs/POWERBI_BUILD_GUIDE.md). Or build everything from scratch: load the four CSVs, create the four relationships, paste [`powerbi/measures.dax`](./powerbi/measures.dax) and import the theme. Reference values at the end of the guide let you check your report.

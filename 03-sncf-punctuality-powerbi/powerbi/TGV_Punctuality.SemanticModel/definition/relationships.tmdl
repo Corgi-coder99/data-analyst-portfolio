@@ -1,0 +1,15 @@
+relationship 6f8f816a-a194-48d8-8fea-2651c072fc4d
+	fromColumn: fact_route_month.route_id
+	toColumn: dim_route.route_id
+
+relationship 36250e78-6333-43f6-98bd-cacc764c3e79
+	fromColumn: fact_route_month.month
+	toColumn: dim_date.month
+
+relationship 241aed51-3f5c-46a0-a26b-e2e740fc3417
+	fromColumn: fact_delay_cause.route_id
+	toColumn: dim_route.route_id
+
+relationship 79b327ed-4c86-44ba-9131-d6ddada965b7
+	fromColumn: fact_delay_cause.month
+	toColumn: dim_date.month

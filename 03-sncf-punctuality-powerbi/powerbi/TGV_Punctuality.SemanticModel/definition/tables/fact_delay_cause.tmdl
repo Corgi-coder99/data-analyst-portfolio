@@ -1,0 +1,44 @@
+table fact_delay_cause
+	lineageTag: 17d1dbc1-3f72-4b73-bdbe-6665a2650b3e
+
+	column route_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 38b1d186-514c-445a-bcb9-9ae704d38e01
+		summarizeBy: none
+		sourceColumn: route_id
+
+	column month
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 2850307e-f979-4dae-9ff1-f0b91ce3bf93
+		summarizeBy: none
+		sourceColumn: month
+
+	column cause
+		dataType: string
+		lineageTag: 8cd72d74-a6e7-4e2f-9eb7-d5ee8215857d
+		summarizeBy: none
+		sourceColumn: cause
+
+	column late_trains_est
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 1ba9ab49-d98e-4de9-a5d3-091e9fc2db70
+		summarizeBy: sum
+		sourceColumn: late_trains_est
+
+	partition fact_delay_cause = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\fact_delay_cause.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"route_id", Int64.Type}, {"month", type date}, {"cause", type text}, {"late_trains_est", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

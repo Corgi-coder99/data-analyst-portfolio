@@ -1,0 +1,110 @@
+table fact_route_month
+	lineageTag: 23754e92-b2e7-4d1b-9911-bb35573c333c
+
+	column route_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7bbb313f-f165-479d-8a93-5f51bb3bd456
+		summarizeBy: none
+		sourceColumn: route_id
+
+	column month
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: e244b6f1-ac1d-49b7-a0c8-efd7ead6f35b
+		summarizeBy: none
+		sourceColumn: month
+
+	column trains_planned
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 3b690741-bf8f-4ca4-969d-9b9a343385dc
+		summarizeBy: sum
+		sourceColumn: trains_planned
+
+	column trains_cancelled
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: ec6da7d2-b1cd-4d83-8663-68f02a81a48e
+		summarizeBy: sum
+		sourceColumn: trains_cancelled
+
+	column trains_run
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: cccb670b-fd9d-4a44-a4bb-3836fd4941af
+		summarizeBy: sum
+		sourceColumn: trains_run
+
+	column late_departures
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: e94913d8-bb46-425e-89b8-6eddfaa6c23b
+		summarizeBy: sum
+		sourceColumn: late_departures
+
+	column late_arrivals
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 5b8bb842-990c-4430-84e3-a803e86fe9d5
+		summarizeBy: sum
+		sourceColumn: late_arrivals
+
+	column late_over_15
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 51e8e360-2cfe-4486-a98c-0f8dae7f0496
+		summarizeBy: sum
+		sourceColumn: late_over_15
+
+	column late_over_30
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: dd3defc0-3e97-4ca3-939c-3e8375dd9213
+		summarizeBy: sum
+		sourceColumn: late_over_30
+
+	column late_over_60
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 8120d5e0-2160-4887-aa2e-1e8446cbcfe7
+		summarizeBy: sum
+		sourceColumn: late_over_60
+
+	column avg_delay_late_trains_min
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 35784261-8f25-4f7c-9ee0-87e1d6b803a8
+		summarizeBy: sum
+		sourceColumn: avg_delay_late_trains_min
+
+	column total_delay_minutes
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: b2520f1f-67b8-4124-9fee-0dd94dbbfa8b
+		summarizeBy: sum
+		sourceColumn: total_delay_minutes
+
+	partition fact_route_month = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\fact_route_month.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"route_id", Int64.Type}, {"month", type date}, {"trains_planned", Int64.Type}, {"trains_cancelled", Int64.Type}, {"trains_run", Int64.Type}, {"late_departures", Int64.Type}, {"late_arrivals", Int64.Type}, {"late_over_15", Int64.Type}, {"late_over_30", Int64.Type}, {"late_over_60", Int64.Type}, {"avg_delay_late_trains_min", type number}, {"total_delay_minutes", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

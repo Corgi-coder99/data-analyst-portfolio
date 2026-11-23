@@ -1,0 +1,2 @@
+expression DataFolder = "D:\\data-analyst-portfolio\\03-sncf-punctuality-powerbi\\data\\processed" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: fca314c6-644b-4922-a066-ad79b4b79aa5

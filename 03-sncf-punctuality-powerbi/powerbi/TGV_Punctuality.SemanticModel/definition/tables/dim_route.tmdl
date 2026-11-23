@@ -1,0 +1,70 @@
+table dim_route
+	lineageTag: 2970b413-033b-4f28-a33b-d63cec5ffc95
+
+	column route_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 37406b17-2138-41f9-a6c4-8a3eb7db3ca6
+		summarizeBy: none
+		sourceColumn: route_id
+
+	column route
+		dataType: string
+		lineageTag: 0fd15a28-699b-4738-9760-5d8209431e86
+		summarizeBy: none
+		sourceColumn: route
+
+	column dep
+		dataType: string
+		lineageTag: a65e46ef-7050-4054-935a-85709dc0bf2e
+		summarizeBy: none
+		sourceColumn: dep
+
+	column arr
+		dataType: string
+		lineageTag: a7308a6c-36c9-4b26-941f-0769e8a151c6
+		summarizeBy: none
+		sourceColumn: arr
+
+	column service
+		dataType: string
+		lineageTag: 9eb6f1a3-e682-4083-99f7-b1fc082ff022
+		summarizeBy: none
+		sourceColumn: service
+
+	column axis
+		dataType: string
+		lineageTag: e014fb4f-bbde-4774-b007-d740ba04325d
+		summarizeBy: none
+		sourceColumn: axis
+
+	column is_paris_route
+		dataType: boolean
+		lineageTag: e4233b02-cca6-4e66-98e2-7bee599e4134
+		summarizeBy: none
+		sourceColumn: is_paris_route
+
+	column avg_journey_min
+		dataType: double
+		formatString: 0
+		lineageTag: 8bb708a2-1b88-485c-8d9b-69b2507035a3
+		summarizeBy: none
+		sourceColumn: avg_journey_min
+
+	column journey_band
+		dataType: string
+		lineageTag: b03070ed-3a9c-4c03-875d-716d0997db02
+		summarizeBy: none
+		sourceColumn: journey_band
+
+	partition dim_route = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\dim_route.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"route_id", Int64.Type}, {"route", type text}, {"dep", type text}, {"arr", type text}, {"service", type text}, {"axis", type text}, {"is_paris_route", type logical}, {"avg_journey_min", type number}, {"journey_band", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

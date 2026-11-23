@@ -1,0 +1,128 @@
+table _Measures
+	lineageTag: 9913bde8-bb13-4bdd-a3b5-38ffc7bcf267
+
+	column Dummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0324fc6c-40e0-49a8-b8d4-2b2d25820111
+		summarizeBy: none
+		sourceColumn: [Dummy]
+
+	measure 'Trains Planned' = SUM ( fact_route_month[trains_planned] )
+		formatString: #,0
+		lineageTag: e5a576dd-81ca-43c5-87c9-2a3e655d8c97
+
+	measure 'Trains Cancelled' = SUM ( fact_route_month[trains_cancelled] )
+		formatString: #,0
+		lineageTag: b28dc109-0553-4447-8d14-2205eeda7136
+
+	measure 'Trains Run' = SUM ( fact_route_month[trains_run] )
+		formatString: #,0
+		lineageTag: fa775890-3018-44d1-9f46-063e7dcceb3f
+
+	measure 'Late Arrivals' = SUM ( fact_route_month[late_arrivals] )
+		formatString: #,0
+		lineageTag: d3420d4d-90ed-4ec3-b2e1-1f1f5fa002d6
+
+	measure 'Late Over 15' = SUM ( fact_route_month[late_over_15] )
+		formatString: #,0
+		lineageTag: 3e70c3e3-422c-4994-99e3-03e261f47c4b
+
+	measure 'Late Over 30' = SUM ( fact_route_month[late_over_30] )
+		formatString: #,0
+		lineageTag: d4958254-b9e8-4b48-b8da-a7676c2b6ba2
+
+	measure 'Late Over 60' = SUM ( fact_route_month[late_over_60] )
+		formatString: #,0
+		lineageTag: 820caf91-5d6b-4c51-8bd8-17105360efa5
+
+	measure 'Total Delay Minutes' = SUM ( fact_route_month[total_delay_minutes] )
+		formatString: #,0
+		lineageTag: c4a29c0c-4d9e-47fd-b54f-43f9cbae0c90
+
+	measure 'On Time Trains' = [Trains Run] - [Late Arrivals]
+		formatString: #,0
+		lineageTag: c164523e-89bd-4f8b-869e-4f94ac54a21f
+
+	measure 'Cancellation Rate' = DIVIDE ( [Trains Cancelled], [Trains Planned] )
+		formatString: 0.0%
+		lineageTag: f6c807f9-988b-4966-9aa2-55f09a4a39de
+
+	measure 'Late Arrival Rate' = DIVIDE ( [Late Arrivals], [Trains Run] )
+		formatString: 0.0%
+		lineageTag: d01d9f5d-07a6-4fc3-9503-472dca0b94df
+
+	measure 'Over 30 Rate' = DIVIDE ( [Late Over 30], [Trains Run] )
+		formatString: 0.0%
+		lineageTag: 12087ff6-5b2c-42e1-bd20-56b260dc1d43
+
+	measure 'Over 60 Rate' = DIVIDE ( [Late Over 60], [Trains Run] )
+		formatString: 0.0%
+		lineageTag: 24ee4767-6744-4126-a062-131ba3c5721c
+
+	measure 'On Time Rate' = DIVIDE ( [On Time Trains], [Trains Run] )
+		formatString: 0.0%
+		lineageTag: e766aa2d-ab46-4e34-b8bb-ebae62bc22f2
+
+	measure 'Avg Delay of Late Trains (min)' = DIVIDE ( [Total Delay Minutes], [Late Arrivals] )
+		formatString: 0.0
+		lineageTag: 6186ff9a-3b90-4883-b190-41356fefb796
+
+	measure 'Total Delay Hours' = DIVIDE ( [Total Delay Minutes], 60 )
+		formatString: #,0
+		lineageTag: 25bf0704-4533-4425-85c8-aaaf5b753b02
+
+	measure 'Late Rate Last Year' =
+			VAR _prior =
+			    SELECTCOLUMNS ( VALUES ( dim_date[month] ), "m", EDATE ( dim_date[month], -12 ) )
+			RETURN
+			    CALCULATE ( [Late Arrival Rate], REMOVEFILTERS ( dim_date ), TREATAS ( _prior, dim_date[month] ) )
+		formatString: 0.0%
+		lineageTag: 3a8608bc-74e7-4e45-969e-8125ca046648
+
+	measure 'Late Rate YoY Change (pts)' = [Late Arrival Rate] - [Late Rate Last Year]
+		formatString: +0.0%;-0.0%
+		lineageTag: f1568cf6-f60a-4451-9068-c07f39f66a9b
+
+	measure 'Late Trains by Cause' = SUM ( fact_delay_cause[late_trains_est] )
+		formatString: #,0
+		lineageTag: 751f7913-ac77-4699-b42e-a503687edefb
+
+	measure 'Cause Share' =
+			DIVIDE (
+			    [Late Trains by Cause],
+			    CALCULATE ( [Late Trains by Cause], ALL ( fact_delay_cause[cause] ) )
+			)
+		formatString: 0.0%
+		lineageTag: b11f5ee8-a96f-408f-bf76-b590f22665b8
+
+	measure 'Late Rate Rank (routes with 2,000+ trains)' =
+			IF (
+			    [Trains Run] >= 2000,
+			    RANKX (
+			        FILTER ( ALLSELECTED ( dim_route[route] ), [Trains Run] >= 2000 ),
+			        [Late Arrival Rate], , DESC, DENSE
+			    )
+			)
+		formatString: 0
+		lineageTag: 566a71d1-a2ff-4de5-b41e-cf8d8f3631ed
+
+	measure 'Selected Axis' = SELECTEDVALUE ( dim_route[axis], "All axes" )
+		lineageTag: 9cd0aeae-14f0-4bd7-b986-932e49ccb91e
+
+	measure Headline = "Late-arrival rate " & FORMAT ( [Late Arrival Rate], "0.0%" ) & " | " & [Selected Axis]
+		lineageTag: 9185cef2-8353-4581-93f7-66420db5aab7
+
+	measure 'Late Rate Colour' =
+			SWITCH (
+			    TRUE (),
+			    [Late Arrival Rate] >= 0.18, "#C60C30",
+			    [Late Arrival Rate] >= 0.14, "#E8A33D",
+			    "#1B8A8F"
+			)
+		lineageTag: 10ee9ac7-b605-4735-b2fe-1e7c2f3f7f05
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW ( "Dummy", 1 )
