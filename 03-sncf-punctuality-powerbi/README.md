@@ -2,7 +2,7 @@
 
 ![Overview page](./assets/dashboard_overview.png)
 
-**Live interactive version:** open [`dashboard/index.html`](./dashboard/index.html) in any browser (one file, works offline). Three pages (Home, Overview, Routes & Causes), cross-filtering by service, axis, journey length and year.
+**Live interactive dashboard:** [open it in your browser](https://corgi-coder99.github.io/data-analyst-portfolio/03-sncf-punctuality-powerbi/dashboard/index.html). It is one HTML file (also in [`dashboard/index.html`](./dashboard/index.html)) and works offline. Three pages (Home, Overview, Routes & Causes), cross-filtering by service, axis, journey length and year.
 
 ## 1. Project overview
 

@@ -23,7 +23,7 @@ I am looking for a team where I can apply analytics to real business problems wh
 |---------|-------|---------------|
 | [01 - COVID-19 Global Exploration](./01-covid19-sql-exploration) | SQL (DuckDB / PostgreSQL), CTE, Window Functions, Views | Cleaning a 630k-row time series, fatality and infection rates, rolling vaccination progress, BI-ready views |
 | [02 - Superstore Sales Dashboard](./02-superstore-excel-dashboard) | Excel (PivotTables, Pivot Charts, Slicers, Timeline) | Data cleaning, 6 PivotTables and an interactive dashboard that finds which products and discounts lose money |
-| [03 - TGV Punctuality (Power BI)](./03-sncf-punctuality-powerbi) | Power BI, DAX, star schema, Python | Real SNCF open data (3.4M train runs, 2018-2026): cleaning log, DAX measures, a three-page interactive dashboard and a step-by-step build guide |
+| [03 - TGV Punctuality (Power BI)](./03-sncf-punctuality-powerbi) ([live dashboard](https://corgi-coder99.github.io/data-analyst-portfolio/03-sncf-punctuality-powerbi/dashboard/index.html)) | Power BI, DAX, star schema, Python | Real SNCF open data (3.4M train runs, 2018-2026): cleaning log, DAX measures, a three-page interactive dashboard and a step-by-step build guide |
 
 ## More projects (separate repositories)
 
