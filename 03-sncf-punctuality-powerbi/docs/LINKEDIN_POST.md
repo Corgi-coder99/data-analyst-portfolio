@@ -1,6 +1,6 @@
 # LinkedIn post (draft)
 
-Post it only after you have built the Power BI report from `POWERBI_BUILD_GUIDE.md`, because the text says you built it. Replace the two placeholders in square brackets. Put the Overview page screenshot (or a short screen recording of you clicking an axis and the whole page filtering) as the first image, and the GitHub link in the first comment rather than in the post body, since LinkedIn tends to show posts with outbound links to fewer people.
+Post it only after you have built the Power BI report from `POWERBI_BUILD_GUIDE.md`, because the text says you built it. Replace the placeholder `[start date]` in the post. The GitHub and live-dashboard links in the first comment are already filled in. Put the Overview page screenshot (or a short screen recording of you clicking an axis and the whole page filtering) as the first image, and the GitHub link in the first comment rather than in the post body, since LinkedIn tends to show posts with outbound links to fewer people.
 
 ---
 
@@ -42,4 +42,4 @@ What other insight would you add to this dashboard?
 
 ---
 
-First comment (paste the link here): Full project, data cleaning log, DAX measures and interactive HTML version: [GitHub link]
+First comment (paste the links here): Full project, data cleaning log and DAX measures: https://github.com/Corgi-coder99/data-analyst-portfolio/tree/main/03-sncf-punctuality-powerbi | Try the interactive version in your browser: https://corgi-coder99.github.io/data-analyst-portfolio/03-sncf-punctuality-powerbi/dashboard/index.html
