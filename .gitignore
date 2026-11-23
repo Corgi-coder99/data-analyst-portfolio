@@ -6,3 +6,4 @@
 __pycache__/
 # Excel lock/temp files
 ~$*
+03-sncf-punctuality-powerbi/data/tgv_raw.csv

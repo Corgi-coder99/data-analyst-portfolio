@@ -1,0 +1,71 @@
+// =====================================================================
+// TGV Punctuality | DAX measures
+// Model: fact_route_month, fact_delay_cause (facts); dim_route, dim_date (dimensions)
+// Create a table called "_Measures" (Enter data, one empty column) and add these as measures.
+// =====================================================================
+
+// ---------- Base volumes ----------
+Trains Planned        = SUM ( fact_route_month[trains_planned] )
+Trains Cancelled      = SUM ( fact_route_month[trains_cancelled] )
+Trains Run            = SUM ( fact_route_month[trains_run] )
+Late Arrivals         = SUM ( fact_route_month[late_arrivals] )
+Late Over 15          = SUM ( fact_route_month[late_over_15] )
+Late Over 30          = SUM ( fact_route_month[late_over_30] )
+Late Over 60          = SUM ( fact_route_month[late_over_60] )
+Total Delay Minutes   = SUM ( fact_route_month[total_delay_minutes] )
+On Time Trains        = [Trains Run] - [Late Arrivals]
+
+// ---------- Rates (always a ratio of sums, never an average of row rates) ----------
+Cancellation Rate     = DIVIDE ( [Trains Cancelled], [Trains Planned] )
+Late Arrival Rate     = DIVIDE ( [Late Arrivals], [Trains Run] )
+Over 30 Rate          = DIVIDE ( [Late Over 30], [Trains Run] )
+Over 60 Rate          = DIVIDE ( [Late Over 60], [Trains Run] )
+On Time Rate          = DIVIDE ( [On Time Trains], [Trains Run] )   // share of trains that ran, so Late Arrival Rate + On Time Rate = 100%
+
+// ---------- Delay size ----------
+Avg Delay of Late Trains (min) = DIVIDE ( [Total Delay Minutes], [Late Arrivals] )
+Total Delay Hours              = DIVIDE ( [Total Delay Minutes], 60 )
+
+// ---------- Year over year ----------
+// Shifts every month in the current selection back 12 months, so it works at any grain
+// (a single month, a year, Jan-Sep, or no date filter at all). Blank for 2018, which has no prior year.
+Late Rate Last Year =
+VAR _prior =
+    SELECTCOLUMNS ( VALUES ( dim_date[month] ), "m", EDATE ( dim_date[month], -12 ) )
+RETURN
+    CALCULATE ( [Late Arrival Rate], REMOVEFILTERS ( dim_date ), TREATAS ( _prior, dim_date[month] ) )
+
+Late Rate YoY Change (pts) = [Late Arrival Rate] - [Late Rate Last Year]
+
+// ---------- Causes (estimate: cause shares applied to each route-month's late trains) ----------
+Late Trains by Cause = SUM ( fact_delay_cause[late_trains_est] )
+
+Cause Share =
+DIVIDE (
+    [Late Trains by Cause],
+    CALCULATE ( [Late Trains by Cause], ALL ( fact_delay_cause[cause] ) )
+)
+
+// ---------- Routes ----------
+Late Rate Rank (routes with 2,000+ trains) =
+IF (
+    [Trains Run] >= 2000,
+    RANKX (
+        FILTER ( ALLSELECTED ( dim_route[route] ), [Trains Run] >= 2000 ),
+        [Late Arrival Rate], , DESC, DENSE
+    )
+)
+
+// ---------- Dynamic titles and colours ----------
+Selected Axis = SELECTEDVALUE ( dim_route[axis], "All axes" )
+
+Headline =
+"Late-arrival rate " & FORMAT ( [Late Arrival Rate], "0.0%" ) & " | " & [Selected Axis]
+
+Late Rate Colour =
+SWITCH (
+    TRUE (),
+    [Late Arrival Rate] >= 0.18, "#C60C30",
+    [Late Arrival Rate] >= 0.14, "#E8A33D",
+    "#1B8A8F"
+)

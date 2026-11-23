@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TGV Punctuality Dashboard | SNCF open data 2018-2026</title>
+<style>
+:root{--ink:#0b1f3a;--muted:#5b6b82;--line:#e3e8f0;--bg:#f4f6fa;--card:#fff;--red:#c60c30;--teal:#1b8a8f;--amber:#e8a33d;--blue:#2f5fa8}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:var(--ink);color:#fff;padding:16px 24px 0}
+header h1{margin:0;font-size:22px;letter-spacing:.2px}
+header p{margin:2px 0 12px;color:#b9c6da;font-size:13px}
+.tabs{display:flex;gap:4px}
+.tabs button{background:transparent;border:0;color:#b9c6da;padding:10px 18px;font-size:14px;cursor:pointer;border-radius:8px 8px 0 0}
+.tabs button[aria-selected=true]{background:var(--bg);color:var(--ink);font-weight:600}
+.filters{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 24px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+.fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fgroup>span{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-right:2px}
+.chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:4px 11px;font-size:12.5px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.reset{margin-left:auto;background:none;border:0;color:var(--blue);cursor:pointer;font-size:13px}
+main{padding:18px 24px 40px;max-width:1280px;margin:auto}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
+.card{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:0 1px 2px rgba(11,31,58,.06)}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi .v{font-size:28px;font-weight:700;margin-top:2px}
+.kpi .s{font-size:12px;color:var(--muted)}
+.card h3{margin:0 0 6px;font-size:14px}
+.card .sub{font-size:12px;color:var(--muted);margin:-2px 0 8px}
+.cols2{grid-template-columns:repeat(auto-fit,minmax(520px,1fr))}
+.toggle{float:right;display:flex;gap:4px}
+.toggle button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:2px 9px;font-size:12px;cursor:pointer}
+.toggle button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+svg{width:100%;height:auto;display:block}
+#chBand svg{max-width:780px}
+svg text{font-family:inherit;fill:#33435c}
+.bar{cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{font-size:11.5px;color:var(--muted);font-weight:600;cursor:pointer;white-space:nowrap}
+th[aria-sort]{color:var(--ink)}
+.hero{background:linear-gradient(120deg,var(--ink),#193a66);color:#fff;border-radius:14px;padding:26px 28px;margin-bottom:14px}
+.hero h2{margin:0 0 6px;font-size:26px}
+.hero p{margin:0;color:#c8d4e6;max-width:760px}
+.find{border-left:4px solid var(--red)}
+.find b{display:block;font-size:15px;margin-bottom:2px}
+.note{font-size:12.5px;color:var(--muted)}
+.note a{color:var(--blue)}
+[hidden]{display:none!important}
+@media(max-width:640px){.cols2{grid-template-columns:1fr}main,.filters,header{padding-left:12px;padding-right:12px}.kpi .v{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>TGV Punctuality Dashboard</h1>
+  <p>SNCF Voyageurs open data: monthly TGV regularity by route, January 2018 to September 2026</p>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-page="home" aria-selected="true">Home</button>
+    <button role="tab" data-page="overview" aria-selected="false">Overview</button>
+    <button role="tab" data-page="routes" aria-selected="false">Routes &amp; Causes</button>
+  </div>
+</header>
+<div class="filters" id="filters"></div>
+<main>
+<section id="page-home">
+  <div class="hero">
+    <h2>How punctual is the TGV, and where does it break down?</h2>
+    <p>3.4 million train runs on 146 routes over 105 months. Use the filters above to slice the whole dashboard by service, axis, journey length and year. Click a bar in the Overview to filter by axis.</p>
+  </div>
+  <div class="grid kpis" id="homeKpis"></div>
+  <div class="grid cols2">
+    <div class="card find"><b>Punctuality is getting worse after a post-2021 low</b>Late arrivals peaked at 17.8% of trains in 2018, fell to 11.3% in 2021 (a year of reduced traffic), then rose again. For January to September, 2026 sits at 18.7% against 14.3% in 2025.</div>
+    <div class="card find"><b>When a train is late, it is later than before</b>The average delay of a late train grew from 30.7 minutes (2018) to 40.4 (2026, January to September). Trains over 60 minutes late went from 1.5% to 3.1% of runs between 2021 and 2026.</div>
+    <div class="card find"><b>Summer is the weak season</b>July has the highest late rate of the year (18.5%) and the most severe delays, against 12.2% in March.</div>
+    <div class="card find"><b>Cross-country routes are the least reliable</b>Routes that do not touch Paris are late 19.5% of the time, against 14.0% for routes with a Paris terminal.</div>
+    <div class="card find"><b>Cancellations spike with disruption</b>April 2020 shows 53.6% of planned trains cancelled, April 2021 37.5% and April 2018 32.7%, in line with the lockdowns and the spring 2018 rail strikes.</div>
+    <div class="card find"><b>No single cause dominates</b>External causes (22%), traffic management (21%), infrastructure (21%) and rolling stock (19%) each explain about a fifth of late trains.</div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>Method and limits</h3>
+    <p class="note"><b>Source:</b> SNCF Voyageurs, <a href="https://ressources.data.sncf.com/explore/dataset/regularite-mensuelle-tgv-aqst/" target="_blank" rel="noopener">Régularité mensuelle TGV par liaisons</a>, Open Database Licence (ODbL). Cleaning rules and row counts are in docs/DATA_QUALITY_LOG.md.</p>
+    <p class="note"><b>Definitions:</b> late arrival = the source's count of trains late at arrival. SNCF counts a train as on time within 5 min (journeys under 1h30), 10 min (1h30 to 3h) or 15 min (over 3h), and I read the column that way, but the dataset does not document it precisely. Rates are ratios of sums: late arrivals divided by trains run, cancellations divided by trains planned.</p>
+    <p class="note"><b>Important:</b> a TGV can serve several routes, so it is counted once on each. The totals here are route-level movements, not the official SNCF network or axis regularity, which SNCF publishes separately. Cause shares are an estimate (each route-month's cause percentages applied to its late trains). The axis is derived from the Paris terminal of each route, not a field in the source.</p>
+  </div>
+</section>
+
+<section id="page-overview" hidden>
+  <div class="grid kpis" id="ovKpis"></div>
+  <div class="grid cols2">
+    <div class="card"><div class="toggle" id="grainToggle"></div><h3>Late-arrival rate</h3><div class="sub">Share of trains run that arrived late</div><div id="chLate"></div></div>
+    <div class="card"><h3>Cancellation rate</h3><div class="sub">Share of planned trains cancelled</div><div id="chCancel"></div></div>
+    <div class="card"><h3>Late-arrival rate by axis</h3><div class="sub">Click a bar to filter the dashboard by axis</div><div id="chAxis"></div></div>
+    <div class="card"><h3>What happened to every planned train</h3><div class="sub" id="outSub"></div><div id="chOutcome"></div></div>
+  </div>
+</section>
+
+<section id="page-routes" hidden>
+  <div class="grid cols2">
+    <div class="card" style="grid-column:1/-1"><h3>Routes ranked</h3><div class="sub">Routes with at least 2,000 trains run in the selection. Click a column to sort.</div><div id="routeTable"></div></div>
+    <div class="card"><h3>Estimated causes of late trains</h3><div class="sub">Share of late trains by reported cause</div><div id="chCause"></div></div>
+    <div class="card"><h3>Seasonality heatmap</h3><div class="sub">Late-arrival rate by month and year (grey = too few trains)</div><div id="chHeat"></div></div>
+    <div class="card" style="grid-column:1/-1"><h3>Severe delays by journey length</h3><div class="sub">Share of trains run that were more than 30 and more than 60 minutes late</div><div id="chBand"></div></div>
+  </div>
+</section>
+</main>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D = JSON.parse(document.getElementById('data').textContent);
+const ROWS = D.rows, NC = D.causes.length;
+const monthYear = D.months.map(m => +m.slice(0, 4)), monthNo = D.months.map(m => +m.slice(5));
+const state = { service: 'all', axes: new Set(), bands: new Set(), years: new Set(), grain: 'month', sort: 'late', page: 'home' };
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString('en-US');
+const pct = (n, d = 1) => (isFinite(n) ? n.toFixed(d) : '0.0') + '%';
+const ink = '#0b1f3a', RED = '#c60c30', TEAL = '#1b8a8f', BLUE = '#2f5fa8', AMBER = '#e8a33d', GREY = '#aab6c8';
+
+// ---------- filtering and aggregation ----------
+function pass(r, skip) {
+  const rt = D.routes[r[0]];
+  if (skip !== 'service' && state.service !== 'all' && rt.s !== state.service) return false;
+  if (skip !== 'axis' && state.axes.size && !state.axes.has(rt.a)) return false;
+  if (skip !== 'band' && state.bands.size && !state.bands.has(rt.j)) return false;
+  if (skip !== 'year' && state.years.size && !state.years.has(monthYear[r[1]])) return false;
+  return true;
+}
+const select = skip => ROWS.filter(r => pass(r, skip));
+function agg(rows) {
+  const t = { plan: 0, canc: 0, run: 0, late: 0, o15: 0, o30: 0, o60: 0, dmin: 0, c: new Array(NC).fill(0) };
+  for (const r of rows) {
+    t.plan += r[2]; t.canc += r[3]; t.run += r[4]; t.late += r[5]; t.o15 += r[6]; t.o30 += r[7]; t.o60 += r[8]; t.dmin += r[9];
+    for (let k = 0; k < NC; k++) t.c[k] += r[10 + k];
+  }
+  return t;
+}
+const rate = (a, b) => b ? 100 * a / b : 0;
+
+// ---------- filters ----------
+function chip(label, pressed, attrs) { return `<button class="chip" aria-pressed="${pressed}" ${attrs}>${label}</button>`; }
+function renderFilters() {
+  const yrs = [...new Set(monthYear)];
+  $('filters').innerHTML =
+    `<div class="fgroup"><span>Service</span>${[['all', 'All'], [0, 'National'], [1, 'International']].map(([v, l]) => chip(l, state.service === v, `data-f="service" data-v="${v}"`)).join('')}</div>` +
+    `<div class="fgroup"><span>Axis</span>${D.axes.map((a, i) => chip(a, state.axes.has(i), `data-f="axis" data-v="${i}"`)).join('')}</div>` +
+    `<div class="fgroup"><span>Journey</span>${D.bands.map((a, i) => chip(a, state.bands.has(i), `data-f="band" data-v="${i}"`)).join('')}</div>` +
+    `<div class="fgroup"><span>Year</span>${yrs.map(y => chip(y, state.years.has(y), `data-f="year" data-v="${y}"`)).join('')}</div>` +
+    `<button class="reset" data-f="reset">Reset filters</button>`;
+}
+function toggleSet(set, v) { set.has(v) ? set.delete(v) : set.add(v); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-f],[data-axis],[data-page],[data-grain],[data-sort]');
+  if (!b) return;
+  if (b.dataset.page) { state.page = b.dataset.page; }
+  else if (b.dataset.grain) { state.grain = b.dataset.grain; }
+  else if (b.dataset.sort) { state.sort = b.dataset.sort; }
+  else if (b.dataset.axis) { toggleSet(state.axes, +b.dataset.axis); }
+  else {
+    const f = b.dataset.f, v = b.dataset.v;
+    if (f === 'service') state.service = v === 'all' ? 'all' : +v;
+    else if (f === 'axis') toggleSet(state.axes, +v);
+    else if (f === 'band') toggleSet(state.bands, +v);
+    else if (f === 'year') toggleSet(state.years, +v);
+    else if (f === 'reset') { state.service = 'all'; state.axes.clear(); state.bands.clear(); state.years.clear(); }
+  }
+  render();
+});
+
+// ---------- KPI cards ----------
+function kpiCards(t, withPlanned) {
+  const items = [
+    ['Trains planned', fmt(t.plan), `${fmt(t.run)} ran`],
+    ['Cancellation rate', pct(rate(t.canc, t.plan)), `${fmt(t.canc)} cancelled`],
+    ['Late-arrival rate', pct(rate(t.late, t.run)), `${fmt(t.late)} late trains`],
+    ['Over 60 min late', pct(rate(t.o60, t.run)), `${fmt(t.o60)} trains`],
+    ['Avg delay of late trains', t.late ? (t.dmin / t.late).toFixed(1) + ' min' : '0 min', `${fmt(t.dmin / 60)} delay hours`],
+  ];
+  return items.map(([l, v, s]) => `<div class="card kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join('');
+}
+
+// ---------- SVG helpers ----------
+function niceMax(v) { const p = Math.pow(10, Math.floor(Math.log10(v || 1))); for (const m of [1, 2, 2.5, 5, 10]) if (v <= m * p) return m * p; return 10 * p; }
+function lineSvg(pts, o) {
+  const W = 640, H = 230, L = 40, R = 14, T = 12, B = 28;
+  const max = niceMax(Math.max(...pts.map(p => p.y), 1) * 1.05);
+  const x = i => L + (pts.length < 2 ? 0 : i * (W - L - R) / (pts.length - 1)), y = v => T + (H - T - B) * (1 - v / max);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.label}">`;
+  for (let k = 0; k <= 4; k++) { const v = max * k / 4; s += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#e3e8f0"/><text x="${L - 6}" y="${y(v) + 4}" font-size="10" text-anchor="end">${v % 1 ? v.toFixed(1) : v}%</text>`; }
+  let lastYear = null;
+  pts.forEach((p, i) => { if (p.year !== lastYear) { lastYear = p.year; s += `<text x="${x(i)}" y="${H - 8}" font-size="10" text-anchor="middle">${p.year}</text>`; } });
+  const path = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.y).toFixed(1)}`).join('');
+  s += `<path d="${path}" fill="none" stroke="${o.color}" stroke-width="2"/>`;
+  pts.forEach((p, i) => { s += `<circle cx="${x(i)}" cy="${y(p.y)}" r="${pts.length > 40 ? 6 : 4}" fill="${o.color}" fill-opacity="0"><title>${p.label}: ${pct(p.y)}</title></circle>`; });
+  const maxDen = Math.max(...pts.map(p => p.den), 1);  // ignore near-empty periods (e.g. April 2020) when marking the peak
+  let mx = -1;
+  pts.forEach((p, i) => { if (p.den >= 0.1 * maxDen && (mx < 0 || p.y > pts[mx].y)) mx = i; });
+  if (mx >= 0) s += `<circle cx="${x(mx)}" cy="${y(pts[mx].y)}" r="3.5" fill="${o.color}"/><text x="${Math.min(Math.max(x(mx), L + 40), W - 50)}" y="${y(pts[mx].y) - 8}" font-size="10" text-anchor="middle" font-weight="600">${pts[mx].label}: ${pct(pts[mx].y)}</text>`;
+  return s + '</svg>';
+}
+function barsSvg(items, o) {  // horizontal bars: [{label, value, color, attr, dim}]
+  const rowH = 30, W = 640, L = o.left || 130, H = items.length * rowH + 8;
+  const max = niceMax(Math.max(...items.map(i => i.value), 1) * 1.1);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.label}">`;
+  items.forEach((it, i) => {
+    const w = (W - L - 60) * it.value / max, y = i * rowH + 4;
+    s += `<g class="${it.attr ? 'bar' : ''}" ${it.attr || ''} opacity="${it.dim ? .35 : 1}"><rect x="0" y="${y}" width="${W}" height="${rowH - 2}" fill="transparent"/><text x="${L - 8}" y="${y + 17}" font-size="12" text-anchor="end">${it.label}</text><rect x="${L}" y="${y + 4}" width="${Math.max(w, 1)}" height="${rowH - 10}" rx="3" fill="${it.color}"><title>${it.label}: ${it.value.toFixed(1)}%</title></rect><text x="${L + w + 6}" y="${y + 17}" font-size="12" font-weight="600">${it.value.toFixed(1)}%</text></g>`;
+  });
+  return s + '</svg>';
+}
+function donutSvg(parts, centerTop, centerBottom) {
+  const W = 640, H = 250, cx = 160, cy = 125, ro = 100, ri = 62;
+  const total = parts.reduce((a, p) => a + p.v, 0) || 1; let a0 = -Math.PI / 2, s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Outcome of planned trains">`;
+  parts.forEach(p => {
+    const a1 = a0 + 2 * Math.PI * p.v / total, big = a1 - a0 > Math.PI ? 1 : 0;
+    const P = (a, r) => `${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`;
+    if (p.v > 0) s += (p.v === total)
+      ? `<circle cx="${cx}" cy="${cy}" r="${(ro + ri) / 2}" fill="none" stroke="${p.c}" stroke-width="${ro - ri}"><title>${p.l}</title></circle>`
+      : `<path d="M${P(a0, ro)}A${ro},${ro} 0 ${big} 1 ${P(a1, ro)}L${P(a1, ri)}A${ri},${ri} 0 ${big} 0 ${P(a0, ri)}Z" fill="${p.c}"><title>${p.l}: ${fmt(p.v)} (${(100 * p.v / total).toFixed(1)}%)</title></path>`;
+    a0 = a1;
+  });
+  s += `<text x="${cx}" y="${cy - 2}" font-size="20" font-weight="700" text-anchor="middle">${centerTop}</text><text x="${cx}" y="${cy + 16}" font-size="11" text-anchor="middle">${centerBottom}</text>`;
+  parts.forEach((p, i) => { const y = 38 + i * 30; s += `<rect x="340" y="${y - 11}" width="14" height="14" rx="3" fill="${p.c}"/><text x="362" y="${y}" font-size="13">${p.l}</text><text x="${W - 20}" y="${y}" font-size="13" font-weight="600" text-anchor="end">${(100 * p.v / total).toFixed(1)}%</text>`; });
+  return s + '</svg>';
+}
+function heatSvg(cells, years) {
+  const W = 640, L = 46, cw = (W - L - 6) / 12, ch = 26, H = years.length * ch + 26;
+  const mn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Seasonality heatmap">`;
+  mn.forEach((m, i) => s += `<text x="${L + i * cw + cw / 2}" y="12" font-size="10" text-anchor="middle">${m}</text>`);
+  years.forEach((y, r) => {
+    s += `<text x="${L - 8}" y="${22 + r * ch + 15}" font-size="11" text-anchor="end">${y}</text>`;
+    for (let m = 0; m < 12; m++) {
+      const c = cells[y + '-' + m], ok = c && c.run >= 300, v = ok ? rate(c.late, c.run) : null;
+      const t = ok ? Math.min(Math.max((v - 6) / 20, 0), 1) : 0;
+      const fill = ok ? `hsl(${48 - 48 * t}, ${70 + 20 * t}%, ${92 - 42 * t}%)` : '#eef1f6';
+      s += `<rect x="${L + m * cw + 1}" y="${22 + r * ch}" width="${cw - 2}" height="${ch - 2}" rx="3" fill="${fill}"><title>${mn[m]} ${y}: ${ok ? pct(v) : 'no data'}</title></rect>`;
+      if (ok) s += `<text x="${L + m * cw + cw / 2}" y="${22 + r * ch + 16}" font-size="10" text-anchor="middle" fill="${t > .6 ? '#fff' : '#33435c'}" style="fill:${t > .6 ? '#fff' : '#33435c'}">${v.toFixed(0)}</text>`;
+    }
+  });
+  return s + '</svg>';
+}
+
+// ---------- pages ----------
+function periodKey(mi) {
+  const y = monthYear[mi], m = monthNo[mi];
+  if (state.grain === 'year') return [String(y), String(y), y];
+  if (state.grain === 'quarter') { const q = Math.ceil(m / 3); return [`${y}-Q${q}`, `Q${q} ${y}`, y]; }
+  return [D.months[mi], D.months[mi], y];
+}
+function series(rows, num, den) {
+  const map = new Map();
+  for (const r of rows) {
+    const [k, label, year] = periodKey(r[1]);
+    if (!map.has(k)) map.set(k, { label, year, a: 0, b: 0 });
+    const o = map.get(k); o.a += num(r); o.b += den(r);
+  }
+  return [...map.values()].map(o => ({ label: o.label, year: o.year, y: rate(o.a, o.b), den: o.b }));
+}
+const AXIS_COLORS = ['#2f5fa8', '#1b8a8f', '#c60c30', '#e8a33d', '#7a5ca8', '#5b6b82'];
+function renderOverview(rows, t) {
+  $('ovKpis').innerHTML = kpiCards(t);
+  $('grainToggle').innerHTML = ['month', 'quarter', 'year'].map(g => `<button data-grain="${g}" aria-pressed="${state.grain === g}">${g[0].toUpperCase() + g.slice(1)}</button>`).join('');
+  $('chLate').innerHTML = lineSvg(series(rows, r => r[5], r => r[4]), { color: RED, label: 'Late-arrival rate over time' });
+  $('chCancel').innerHTML = lineSvg(series(rows, r => r[3], r => r[2]), { color: BLUE, label: 'Cancellation rate over time' });
+  const others = select('axis'), by = D.axes.map(() => ({ late: 0, run: 0 }));
+  for (const r of others) { const a = D.routes[r[0]].a; by[a].late += r[5]; by[a].run += r[4]; }
+  $('chAxis').innerHTML = barsSvg(D.axes.map((a, i) => ({ label: a, value: rate(by[i].late, by[i].run), color: AXIS_COLORS[i], attr: `data-axis="${i}"`, dim: state.axes.size > 0 && !state.axes.has(i) })).sort((x, y) => y.value - x.value),
+    { label: 'Late-arrival rate by axis', left: 110 });
+  $('outSub').textContent = `${fmt(t.plan)} planned trains in the current selection`;
+  $('chOutcome').innerHTML = donutSvg([
+    { l: 'On time', v: t.run - t.late, c: TEAL }, { l: 'Late, under 15 min', v: t.late - t.o15, c: AMBER },
+    { l: 'Late 15 to 30 min', v: t.o15 - t.o30, c: '#e07a3d' }, { l: 'Late 30 to 60 min', v: t.o30 - t.o60, c: RED },
+    { l: 'Late over 60 min', v: t.o60, c: '#7d0a22' }, { l: 'Cancelled', v: t.canc, c: GREY }], pct(rate(t.run - t.late, t.plan), 0), 'on time');
+}
+function renderRoutes(rows, t) {
+  const g = new Map();
+  for (const r of rows) {
+    if (!g.has(r[0])) g.set(r[0], { run: 0, late: 0, o60: 0, dmin: 0 });
+    const o = g.get(r[0]); o.run += r[4]; o.late += r[5]; o.o60 += r[8]; o.dmin += r[9];
+  }
+  let list = [...g].map(([id, o]) => ({ name: D.routes[id].n, run: o.run, late: rate(o.late, o.run), o60: rate(o.o60, o.run), hours: o.dmin / 60 })).filter(o => o.run >= 2000);
+  list.sort((a, b) => b[state.sort] - a[state.sort]);
+  const head = (k, l) => `<th data-sort="${k}" ${state.sort === k ? 'aria-sort="descending"' : ''}>${l}${state.sort === k ? ' ▼' : ''}</th>`;
+  $('routeTable').innerHTML = `<table><thead><tr><th>Route</th>${head('run', 'Trains run')}${head('late', 'Late rate')}${head('o60', 'Over 60 min')}${head('hours', 'Delay hours')}</tr></thead><tbody>` +
+    list.slice(0, 12).map(o => `<tr><td>${o.name}</td><td>${fmt(o.run)}</td><td>${pct(o.late)}</td><td>${pct(o.o60)}</td><td>${fmt(o.hours)}</td></tr>`).join('') + `</tbody></table>`;
+  const cs = t.c.reduce((a, b) => a + b, 0) || 1;
+  $('chCause').innerHTML = barsSvg(D.causes.map((c, i) => ({ label: c, value: 100 * t.c[i] / cs, color: i < 4 ? BLUE : GREY })).sort((a, b) => b.value - a.value), { label: 'Causes of late trains', left: 140 });
+  const cells = {}, years = [...new Set(monthYear)];
+  for (const r of rows) { const k = monthYear[r[1]] + '-' + (monthNo[r[1]] - 1); const c = cells[k] || (cells[k] = { late: 0, run: 0 }); c.late += r[5]; c.run += r[4]; }
+  $('chHeat').innerHTML = heatSvg(cells, years);
+  const bb = D.bands.map(() => ({ o30: 0, o60: 0, run: 0 }));
+  for (const r of rows) { const b = D.routes[r[0]].j; bb[b].o30 += r[7]; bb[b].o60 += r[8]; bb[b].run += r[4]; }
+  const items = [];
+  D.bands.forEach((b, i) => { items.push({ label: b + ', over 30 min', value: rate(bb[i].o30, bb[i].run), color: AMBER }, { label: b + ', over 60 min', value: rate(bb[i].o60, bb[i].run), color: RED }); });
+  $('chBand').innerHTML = barsSvg(items, { label: 'Severe delays by journey length', left: 190 });
+}
+function render() {
+  renderFilters();
+  document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.page === state.page));
+  for (const p of ['home', 'overview', 'routes']) $('page-' + p).hidden = state.page !== p;
+  const rows = select(), t = agg(rows);
+  $('homeKpis').innerHTML = kpiCards(t);
+  if (state.page === 'overview') renderOverview(rows, t);
+  if (state.page === 'routes') renderRoutes(rows, t);
+}
+{ const h = location.hash.slice(1); if (['home', 'overview', 'routes'].includes(h)) state.page = h; }
+window.__dash = { state, select, agg, render };  // used by the test script
+render();
+</script>
+</body>
+</html>

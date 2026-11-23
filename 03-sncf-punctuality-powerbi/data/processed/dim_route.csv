@@ -1,0 +1,147 @@
+route_id,route,dep,arr,service,axis,is_paris_route,avg_journey_min,journey_band
+1,Barcelona > Paris Lyon (International),Barcelona,Paris Lyon,International,International,True,401.0,Over 3h
+2,Bellegarde (Ain) > Paris Lyon (International),Bellegarde (Ain),Paris Lyon,International,International,True,161.0,1h30 to 3h
+3,Chambery Challes Les Eaux > Paris Lyon (International),Chambery Challes Les Eaux,Paris Lyon,International,International,True,176.0,1h30 to 3h
+4,Dijon Ville > Paris Lyon (International),Dijon Ville,Paris Lyon,International,International,True,95.0,1h30 to 3h
+5,Francfort > Paris Est,Francfort,Paris Est,International,International,True,232.0,Over 3h
+6,Geneve > Paris Lyon,Geneve,Paris Lyon,International,International,True,194.0,Over 3h
+7,Italie > Paris Lyon,Italie,Paris Lyon,International,International,True,434.0,Over 3h
+8,Lausanne > Paris Lyon,Lausanne,Paris Lyon,International,International,True,228.0,Over 3h
+9,Lyon Part Dieu > Marseille St Charles (International),Lyon Part Dieu,Marseille St Charles,International,International,False,99.0,1h30 to 3h
+10,Macon Loche > Paris Lyon (International),Macon Loche,Paris Lyon,International,International,True,97.0,1h30 to 3h
+11,Madrid > Marseille St Charles,Madrid,Marseille St Charles,International,International,False,454.0,Over 3h
+12,Marseille St Charles > Lyon Part Dieu (International),Marseille St Charles,Lyon Part Dieu,International,International,False,103.0,1h30 to 3h
+13,Marseille St Charles > Madrid,Marseille St Charles,Madrid,International,International,False,452.0,Over 3h
+14,Mulhouse Ville > Paris Lyon (International),Mulhouse Ville,Paris Lyon,International,International,True,165.0,1h30 to 3h
+15,Paris Est > Francfort,Paris Est,Francfort,International,International,True,228.0,Over 3h
+16,Paris Est > Strasbourg (International),Paris Est,Strasbourg,International,International,True,105.0,1h30 to 3h
+17,Paris Est > Stuttgart,Paris Est,Stuttgart,International,International,True,190.0,Over 3h
+18,Paris Lyon > Barcelona (International),Paris Lyon,Barcelona,International,International,True,400.0,Over 3h
+19,Paris Lyon > Bellegarde (Ain) (International),Paris Lyon,Bellegarde (Ain),International,International,True,161.0,1h30 to 3h
+20,Paris Lyon > Chambery Challes Les Eaux (International),Paris Lyon,Chambery Challes Les Eaux,International,International,True,168.0,1h30 to 3h
+21,Paris Lyon > Dijon Ville (International),Paris Lyon,Dijon Ville,International,International,True,94.0,1h30 to 3h
+22,Paris Lyon > Geneve,Paris Lyon,Geneve,International,International,True,192.0,Over 3h
+23,Paris Lyon > Italie,Paris Lyon,Italie,International,International,True,426.0,Over 3h
+24,Paris Lyon > Lausanne,Paris Lyon,Lausanne,International,International,True,228.0,Over 3h
+25,Paris Lyon > Macon Loche (International),Paris Lyon,Macon Loche,International,International,True,94.0,1h30 to 3h
+26,Paris Lyon > Mulhouse Ville (International),Paris Lyon,Mulhouse Ville,International,International,True,166.0,1h30 to 3h
+27,Paris Lyon > Zurich,Paris Lyon,Zurich,International,International,True,244.0,Over 3h
+28,Strasbourg > Paris Est (International),Strasbourg,Paris Est,International,International,True,106.0,1h30 to 3h
+29,Stuttgart > Paris Est,Stuttgart,Paris Est,International,International,True,196.0,Over 3h
+30,Zurich > Paris Lyon,Zurich,Paris Lyon,International,International,True,245.0,Over 3h
+31,Aix en Provence TGV > Paris Lyon,Aix en Provence TGV,Paris Lyon,National,South-East,True,186.0,Over 3h
+32,Angers Saint Laud > Paris Montparnasse,Angers Saint Laud,Paris Montparnasse,National,Atlantic,True,95.0,1h30 to 3h
+33,Angouleme > Paris Montparnasse,Angouleme,Paris Montparnasse,National,Atlantic,True,128.0,1h30 to 3h
+34,Annecy > Paris Lyon,Annecy,Paris Lyon,National,South-East,True,227.0,Over 3h
+35,Arras > Paris Nord,Arras,Paris Nord,National,North,True,50.0,Under 1h30
+36,Avignon TGV > Paris Lyon,Avignon TGV,Paris Lyon,National,South-East,True,164.0,1h30 to 3h
+37,Barcelona > Paris Lyon (National),Barcelona,Paris Lyon,National,South-East,True,410.0,Over 3h
+38,Bellegarde (Ain) > Paris Lyon (National),Bellegarde (Ain),Paris Lyon,National,South-East,True,163.0,1h30 to 3h
+39,Besancon Franche Comte TGV > Paris Lyon,Besancon Franche Comte TGV,Paris Lyon,National,South-East,True,132.0,1h30 to 3h
+40,Bordeaux St Jean > Paris Montparnasse,Bordeaux St Jean,Paris Montparnasse,National,Atlantic,True,143.0,1h30 to 3h
+41,Bordeaux St Jean > Paris Vaugirard,Bordeaux St Jean,Paris Vaugirard,National,Atlantic,True,142.0,1h30 to 3h
+42,Bordeaux St Jean > Tourcoing,Bordeaux St Jean,Tourcoing,National,Cross-country,False,321.0,Over 3h
+43,Brest > Paris Montparnasse,Brest,Paris Montparnasse,National,Atlantic,True,228.0,Over 3h
+44,Chambery Challes Les Eaux > Paris Lyon (National),Chambery Challes Les Eaux,Paris Lyon,National,South-East,True,178.0,1h30 to 3h
+45,Dijon Ville > Paris Lyon (National),Dijon Ville,Paris Lyon,National,South-East,True,98.0,1h30 to 3h
+46,Douai > Paris Nord,Douai,Paris Nord,National,North,True,75.0,Under 1h30
+47,Dunkerque > Paris Nord,Dunkerque,Paris Nord,National,North,True,130.0,1h30 to 3h
+48,Grenoble > Paris Lyon,Grenoble,Paris Lyon,National,South-East,True,182.0,Over 3h
+49,La Rochelle Ville > Paris Montparnasse,La Rochelle Ville,Paris Montparnasse,National,Atlantic,True,172.0,1h30 to 3h
+50,Laval > Paris Montparnasse,Laval,Paris Montparnasse,National,Atlantic,True,84.0,Under 1h30
+51,Le Creusot Montceau Montchanin > Paris Lyon,Le Creusot Montceau Montchanin,Paris Lyon,National,South-East,True,81.0,Under 1h30
+52,Le Mans > Paris Montparnasse,Le Mans,Paris Montparnasse,National,Atlantic,True,59.0,Under 1h30
+53,Lille > Lyon Part Dieu,Lille,Lyon Part Dieu,National,Cross-country,False,185.0,Over 3h
+54,Lille > Marseille St Charles,Lille,Marseille St Charles,National,Cross-country,False,298.0,Over 3h
+55,Lille > Paris Nord,Lille,Paris Nord,National,North,True,69.0,Under 1h30
+56,Lyon Part Dieu > Lille,Lyon Part Dieu,Lille,National,Cross-country,False,188.0,Over 3h
+57,Lyon Part Dieu > Marne La Vallee,Lyon Part Dieu,Marne La Vallee,National,Cross-country,False,108.0,1h30 to 3h
+58,Lyon Part Dieu > Marseille St Charles (National),Lyon Part Dieu,Marseille St Charles,National,Cross-country,False,105.0,1h30 to 3h
+59,Lyon Part Dieu > Montpellier,Lyon Part Dieu,Montpellier,National,Cross-country,False,114.0,1h30 to 3h
+60,Lyon Part Dieu > Paris Lyon,Lyon Part Dieu,Paris Lyon,National,South-East,True,120.0,1h30 to 3h
+61,Lyon Part Dieu > Rennes,Lyon Part Dieu,Rennes,National,Cross-country,False,236.0,Over 3h
+62,Macon Loche > Paris Lyon (National),Macon Loche,Paris Lyon,National,South-East,True,98.0,1h30 to 3h
+63,Marne La Vallee > Lyon Part Dieu,Marne La Vallee,Lyon Part Dieu,National,Cross-country,False,108.0,1h30 to 3h
+64,Marne La Vallee > Marseille St Charles,Marne La Vallee,Marseille St Charles,National,Cross-country,False,213.0,Over 3h
+65,Marseille St Charles > Lille,Marseille St Charles,Lille,National,Cross-country,False,285.0,Over 3h
+66,Marseille St Charles > Lyon Part Dieu (National),Marseille St Charles,Lyon Part Dieu,National,Cross-country,False,105.0,1h30 to 3h
+67,Marseille St Charles > Marne La Vallee,Marseille St Charles,Marne La Vallee,National,Cross-country,False,210.0,Over 3h
+68,Marseille St Charles > Paris Lyon,Marseille St Charles,Paris Lyon,National,South-East,True,198.0,Over 3h
+69,Marseille St Charles > Tourcoing,Marseille St Charles,Tourcoing,National,Cross-country,False,294.0,Over 3h
+70,Metz > Paris Est,Metz,Paris Est,National,East,True,86.0,Under 1h30
+71,Montpellier > Lyon Part Dieu,Montpellier,Lyon Part Dieu,National,Cross-country,False,114.0,1h30 to 3h
+72,Montpellier > Paris Lyon,Montpellier,Paris Lyon,National,South-East,True,208.0,Over 3h
+73,Mulhouse Ville > Paris Lyon (National),Mulhouse Ville,Paris Lyon,National,South-East,True,171.0,1h30 to 3h
+74,Nancy > Paris Est,Nancy,Paris Est,National,East,True,95.0,1h30 to 3h
+75,Nantes > Paris Montparnasse,Nantes,Paris Montparnasse,National,Atlantic,True,133.0,1h30 to 3h
+76,Nantes > Paris Vaugirard,Nantes,Paris Vaugirard,National,Atlantic,True,144.0,1h30 to 3h
+77,Nantes > Strasbourg,Nantes,Strasbourg,National,Cross-country,False,314.0,Over 3h
+78,Nice Ville > Paris Lyon,Nice Ville,Paris Lyon,National,South-East,True,352.0,Over 3h
+79,Nimes > Paris Lyon,Nimes,Paris Lyon,National,South-East,True,179.0,1h30 to 3h
+80,Paris Est > Metz,Paris Est,Metz,National,East,True,85.0,Under 1h30
+81,Paris Est > Nancy,Paris Est,Nancy,National,East,True,96.0,1h30 to 3h
+82,Paris Est > Reims,Paris Est,Reims,National,East,True,46.0,Under 1h30
+83,Paris Est > Strasbourg (National),Paris Est,Strasbourg,National,East,True,115.0,1h30 to 3h
+84,Paris Lyon > Aix en Provence TGV,Paris Lyon,Aix en Provence TGV,National,South-East,True,184.0,Over 3h
+85,Paris Lyon > Annecy,Paris Lyon,Annecy,National,South-East,True,225.0,Over 3h
+86,Paris Lyon > Avignon TGV,Paris Lyon,Avignon TGV,National,South-East,True,160.0,1h30 to 3h
+87,Paris Lyon > Barcelona (National),Paris Lyon,Barcelona,National,South-East,True,410.0,Over 3h
+88,Paris Lyon > Bellegarde (Ain) (National),Paris Lyon,Bellegarde (Ain),National,South-East,True,163.0,1h30 to 3h
+89,Paris Lyon > Besancon Franche Comte TGV,Paris Lyon,Besancon Franche Comte TGV,National,South-East,True,129.0,1h30 to 3h
+90,Paris Lyon > Chambery Challes Les Eaux (National),Paris Lyon,Chambery Challes Les Eaux,National,South-East,True,177.0,1h30 to 3h
+91,Paris Lyon > Dijon Ville (National),Paris Lyon,Dijon Ville,National,South-East,True,96.0,1h30 to 3h
+92,Paris Lyon > Grenoble,Paris Lyon,Grenoble,National,South-East,True,181.0,Over 3h
+93,Paris Lyon > Le Creusot Montceau Montchanin,Paris Lyon,Le Creusot Montceau Montchanin,National,South-East,True,80.0,Under 1h30
+94,Paris Lyon > Lyon Part Dieu,Paris Lyon,Lyon Part Dieu,National,South-East,True,119.0,1h30 to 3h
+95,Paris Lyon > Macon Loche (National),Paris Lyon,Macon Loche,National,South-East,True,96.0,1h30 to 3h
+96,Paris Lyon > Marseille St Charles,Paris Lyon,Marseille St Charles,National,South-East,True,196.0,Over 3h
+97,Paris Lyon > Montpellier,Paris Lyon,Montpellier,National,South-East,True,210.0,Over 3h
+98,Paris Lyon > Mulhouse Ville (National),Paris Lyon,Mulhouse Ville,National,South-East,True,170.0,1h30 to 3h
+99,Paris Lyon > Nice Ville,Paris Lyon,Nice Ville,National,South-East,True,353.0,Over 3h
+100,Paris Lyon > Nimes,Paris Lyon,Nimes,National,South-East,True,179.0,1h30 to 3h
+101,Paris Lyon > Perpignan,Paris Lyon,Perpignan,National,South-East,True,308.0,Over 3h
+102,Paris Lyon > Saint Etienne Chateaucreux,Paris Lyon,Saint Etienne Chateaucreux,National,South-East,True,171.0,1h30 to 3h
+103,Paris Lyon > Toulon,Paris Lyon,Toulon,National,South-East,True,238.0,Over 3h
+104,Paris Lyon > Valence Alixan TGV,Paris Lyon,Valence Alixan TGV,National,South-East,True,131.0,1h30 to 3h
+105,Paris Montparnasse > Angers Saint Laud,Paris Montparnasse,Angers Saint Laud,National,Atlantic,True,92.0,1h30 to 3h
+106,Paris Montparnasse > Angouleme,Paris Montparnasse,Angouleme,National,Atlantic,True,127.0,1h30 to 3h
+107,Paris Montparnasse > Bordeaux St Jean,Paris Montparnasse,Bordeaux St Jean,National,Atlantic,True,144.0,1h30 to 3h
+108,Paris Montparnasse > Brest,Paris Montparnasse,Brest,National,Atlantic,True,227.0,Over 3h
+109,Paris Montparnasse > La Rochelle Ville,Paris Montparnasse,La Rochelle Ville,National,Atlantic,True,176.0,1h30 to 3h
+110,Paris Montparnasse > Laval,Paris Montparnasse,Laval,National,Atlantic,True,82.0,Under 1h30
+111,Paris Montparnasse > Le Mans,Paris Montparnasse,Le Mans,National,Atlantic,True,57.0,Under 1h30
+112,Paris Montparnasse > Nantes,Paris Montparnasse,Nantes,National,Atlantic,True,131.0,1h30 to 3h
+113,Paris Montparnasse > Poitiers,Paris Montparnasse,Poitiers,National,Atlantic,True,95.0,1h30 to 3h
+114,Paris Montparnasse > Quimper,Paris Montparnasse,Quimper,National,Atlantic,True,225.0,Over 3h
+115,Paris Montparnasse > Rennes,Paris Montparnasse,Rennes,National,Atlantic,True,98.0,1h30 to 3h
+116,Paris Montparnasse > St Malo,Paris Montparnasse,St Malo,National,Atlantic,True,158.0,1h30 to 3h
+117,Paris Montparnasse > St Pierre Des Corps,Paris Montparnasse,St Pierre Des Corps,National,Atlantic,True,63.0,Under 1h30
+118,Paris Montparnasse > Toulouse Matabiau,Paris Montparnasse,Toulouse Matabiau,National,Atlantic,True,267.0,Over 3h
+119,Paris Montparnasse > Tours,Paris Montparnasse,Tours,National,Atlantic,True,75.0,Under 1h30
+120,Paris Montparnasse > Vannes,Paris Montparnasse,Vannes,National,Atlantic,True,155.0,1h30 to 3h
+121,Paris Nord > Arras,Paris Nord,Arras,National,North,True,49.0,Under 1h30
+122,Paris Nord > Douai,Paris Nord,Douai,National,North,True,70.0,Under 1h30
+123,Paris Nord > Dunkerque,Paris Nord,Dunkerque,National,North,True,129.0,1h30 to 3h
+124,Paris Nord > Lille,Paris Nord,Lille,National,North,True,67.0,Under 1h30
+125,Paris Vaugirard > Bordeaux St Jean,Paris Vaugirard,Bordeaux St Jean,National,Atlantic,True,165.0,1h30 to 3h
+126,Paris Vaugirard > Nantes,Paris Vaugirard,Nantes,National,Atlantic,True,140.0,1h30 to 3h
+127,Paris Vaugirard > Rennes,Paris Vaugirard,Rennes,National,Atlantic,True,122.0,1h30 to 3h
+128,Perpignan > Paris Lyon,Perpignan,Paris Lyon,National,South-East,True,311.0,Over 3h
+129,Poitiers > Paris Montparnasse,Poitiers,Paris Montparnasse,National,Atlantic,True,98.0,1h30 to 3h
+130,Quimper > Paris Montparnasse,Quimper,Paris Montparnasse,National,Atlantic,True,230.0,Over 3h
+131,Reims > Paris Est,Reims,Paris Est,National,East,True,46.0,Under 1h30
+132,Rennes > Lyon Part Dieu,Rennes,Lyon Part Dieu,National,Cross-country,False,236.0,Over 3h
+133,Rennes > Paris Montparnasse,Rennes,Paris Montparnasse,National,Atlantic,True,100.0,1h30 to 3h
+134,Rennes > Paris Vaugirard,Rennes,Paris Vaugirard,National,Atlantic,True,111.0,1h30 to 3h
+135,Saint Etienne Chateaucreux > Paris Lyon,Saint Etienne Chateaucreux,Paris Lyon,National,South-East,True,168.0,1h30 to 3h
+136,St Malo > Paris Montparnasse,St Malo,Paris Montparnasse,National,Atlantic,True,158.0,1h30 to 3h
+137,St Pierre Des Corps > Paris Montparnasse,St Pierre Des Corps,Paris Montparnasse,National,Atlantic,True,64.0,Under 1h30
+138,Strasbourg > Nantes,Strasbourg,Nantes,National,Cross-country,False,327.0,Over 3h
+139,Strasbourg > Paris Est (National),Strasbourg,Paris Est,National,East,True,116.0,1h30 to 3h
+140,Toulon > Paris Lyon,Toulon,Paris Lyon,National,South-East,True,241.0,Over 3h
+141,Toulouse Matabiau > Paris Montparnasse,Toulouse Matabiau,Paris Montparnasse,National,Atlantic,True,270.0,Over 3h
+142,Tourcoing > Bordeaux St Jean,Tourcoing,Bordeaux St Jean,National,Cross-country,False,300.0,Over 3h
+143,Tourcoing > Marseille St Charles,Tourcoing,Marseille St Charles,National,Cross-country,False,305.0,Over 3h
+144,Tours > Paris Montparnasse,Tours,Paris Montparnasse,National,Atlantic,True,77.0,Under 1h30
+145,Valence Alixan TGV > Paris Lyon,Valence Alixan TGV,Paris Lyon,National,South-East,True,133.0,1h30 to 3h
+146,Vannes > Paris Montparnasse,Vannes,Paris Montparnasse,National,Atlantic,True,161.0,1h30 to 3h
