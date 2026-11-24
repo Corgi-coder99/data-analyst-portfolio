@@ -1,0 +1,37 @@
+[
+  {
+    "id": "m1",
+    "caption": "1 | Data model",
+    "text": "This is my Power BI project on the punctuality of the French TGV, built from eight years of official SNCF open data: three point four million train runs on one hundred forty-six routes. The model is a star schema: two fact tables for train counts and delay causes, and two dimensions for routes and dates, linked by four relationships."
+  },
+  {
+    "id": "m2",
+    "caption": "2 | DAX measures and refresh",
+    "text": "The logic lives in twenty-five DAX measures, and every rate is a ratio of sums, never an average of averages. The data is embedded, so there is nothing to configure: first refresh the relationships, then click Refresh to load everything. It takes about two minutes, so I cut the wait."
+  },
+  {
+    "id": "m3",
+    "caption": "3 | Overview page",
+    "text": "The Overview shows five key numbers: three point five million planned trains, three percent cancelled, fourteen point seven percent late, and two point one percent more than an hour late. Punctuality improved until twenty twenty-one, then got worse again, and the cancellation chart shows the lockdown spikes."
+  },
+  {
+    "id": "m4",
+    "caption": "4 | Interactive filtering",
+    "text": "Everything is interactive. Let's click the Cross-country axis, the routes that never touch Paris. Every card and chart updates: the late rate jumps to nineteen point six percent, against fourteen point seven for the whole network. Clear the filter, and we are back to the full picture."
+  },
+  {
+    "id": "m5",
+    "caption": "5 | Key findings",
+    "text": "The Home page summarises the findings: twenty twenty-six is the worst year so far, at eighteen point seven percent late, and late trains are also later, forty minutes on average."
+  },
+  {
+    "id": "m6",
+    "caption": "6 | Routes and causes",
+    "text": "The Routes and Causes page ranks the routes, shows the seasonal heat map, with summer as the weak season, and the causes of delay, which are spread evenly across four main categories."
+  },
+  {
+    "id": "m7",
+    "caption": "7 | Wrap-up",
+    "text": "The whole report is generated from code, so it is reproducible, and it is all on my GitHub. I am looking for an internship or work-study contract in data analysis in France. Thanks for watching!"
+  }
+]

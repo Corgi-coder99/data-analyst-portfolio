@@ -86,7 +86,7 @@ Full log with row counts: [`docs/DATA_QUALITY_LOG.md`](./docs/DATA_QUALITY_LOG.m
 
 ![Overview page](./assets/powerbi_overview.png)
 
-The three pages (Home, Overview, Routes & Causes) are built, with the data embedded. Open [`powerbi/TGV_Punctuality.pbip`](./powerbi/TGV_Punctuality.pbip) in Power BI Desktop and click **Home > Refresh** once (see the guide for the details). Clicking an axis filters every visual:
+The three pages (Home, Overview, Routes & Causes) are built, with the data embedded. Open [`powerbi/TGV_Punctuality.pbip`](./powerbi/TGV_Punctuality.pbip) in Power BI Desktop and load the data in two steps: click **Refresh now** on the red bar first, then **Home > Refresh** (see the guide for the details). Clicking an axis filters every visual:
 
 ![Overview page filtered on the Cross-country axis](./assets/powerbi_overview_filtered.png)
 

@@ -9,9 +9,11 @@ When you finish, check your numbers against the "Reference values" at the bottom
 `powerbi/TGV_Punctuality.pbip` is a complete Power BI Project: the data (embedded, so no file path), the four tables, the relationships, the date table, 25 DAX measures, the colour theme and **all three report pages with their visuals** (Home, Overview, Routes & Causes). The rest of this guide explains how each part is built, so you can rebuild it from scratch or change it.
 
 1. In Power BI Desktop: **File > Options and settings > Options > Preview features**, tick **Power BI Project (.pbip) save option** if it is not already on, then restart Power BI.
-2. Open `powerbi/TGV_Punctuality.pbip`. The visuals show "(Blank)" and two yellow bars appear. That is normal: a project file does not contain data.
-3. Click **Home > Refresh** in the ribbon, **once**, and wait about 2 minutes. The tables load and the report fills in.
-   - Use the ribbon button, not the two yellow "Refresh now" bars. Clicking the bars one after the other can fail with "A cyclic reference was encountered".
+2. Open `powerbi/TGV_Punctuality.pbip`. The visuals show "(Blank)" and two bars appear at the top (a red one about relationships, a grey one about tables with no data). That is normal: a project file does not contain data.
+3. Load the data in **two steps, in this order**:
+   1. On the **red bar** ("One or more relationships have been modified ..."), click **Refresh now**. Wait until the red bar disappears (about 10 to 30 seconds).
+   2. Then click **Home > Refresh** in the ribbon, once, and wait about 2 minutes. The tables load and the report fills in.
+   - **Do not click Home > Refresh first.** On a freshly opened project it fails with "A cyclic reference was encountered during evaluation", because the relationships have not been refreshed yet. If you see that message, close it, click **Refresh now** on the red bar, wait, then click Home > Refresh again.
    - If Power BI says "Issues were found ... Changing the partition type ... is not allowed", delete the hidden `.pbi` folders inside `powerbi/TGV_Punctuality.SemanticModel` and `powerbi/TGV_Punctuality.Report`, then reopen the file. They are a local cache that is not committed.
 4. Check the Overview page against the reference values at the bottom of this guide. Then click an axis (for example Cross-country) and watch every visual filter.
 5. Save with **File > Save**. Power BI keeps the `.pbip` format.
@@ -20,7 +22,7 @@ To regenerate the whole project (model, measures and visuals) from the scripts: 
 
 Do not use File > Export > Power BI template on this project: the template exported from it fails to load ("cyclic reference").
 
-How it was checked: the project was opened in Power BI Desktop (version 2.159), refreshed with the ribbon button, and all three pages were inspected. The totals, the filtered reference line, the year-over-year measure and the cause shares match the reference values below, and the axis slicer filters every visual.
+How it was checked: the project was opened in Power BI Desktop (version 2.159), refreshed in the two steps above, and all three pages were inspected. The totals, the filtered reference line, the year-over-year measure and the cause shares match the reference values below, and the axis slicer filters every visual.
 
 ## 1. Load the data
 

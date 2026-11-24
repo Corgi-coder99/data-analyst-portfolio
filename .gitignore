@@ -7,3 +7,7 @@ __pycache__/
 # Excel lock/temp files
 ~$*
 03-sncf-punctuality-powerbi/data/tgv_raw.csv
+
+# Personal voice recordings, never commit
+video-assets/
+03-sncf-punctuality-powerbi/video/*.mp4
