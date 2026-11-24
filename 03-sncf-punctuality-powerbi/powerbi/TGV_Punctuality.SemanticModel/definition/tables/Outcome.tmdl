@@ -1,0 +1,24 @@
+table Outcome
+	lineageTag: 7a68eb30-3280-4f4e-a13f-caadc68d7b8a
+
+	column Outcome
+		dataType: string
+		lineageTag: c51c3934-0ddd-42d2-9123-d21c1837dd1f
+		summarizeBy: none
+		sourceColumn: Outcome
+		sortByColumn: Order
+
+	column Order
+		dataType: int64
+		isHidden
+		lineageTag: 50b80e73-9e34-4d05-8140-35c54337ce53
+		summarizeBy: none
+		sourceColumn: Order
+
+	partition Outcome = m
+		mode: import
+		source =
+				let
+					Source = #table(type table [Outcome = text, Order = Int64.Type], {{"On time", 1}, {"Late, under 15 min", 2}, {"Late 15 to 30 min", 3}, {"Late 30 to 60 min", 4}, {"Late over 60 min", 5}, {"Cancelled", 6}})
+				in
+					Source

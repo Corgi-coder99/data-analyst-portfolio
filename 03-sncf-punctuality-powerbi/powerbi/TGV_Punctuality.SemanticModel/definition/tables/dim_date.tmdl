@@ -1,51 +1,51 @@
 table dim_date
-	lineageTag: 48ef84dc-bbb9-4a53-b7d2-8c46d82d5f2a
+	lineageTag: 3bab6329-a393-485c-b8ac-18e96e0b6b80
 	dataCategory: Time
 
 	column month
 		dataType: dateTime
 		isKey
 		formatString: yyyy-mm-dd
-		lineageTag: 7e9295e3-9ce9-4de3-a3ba-898419005a88
+		lineageTag: 9fd9a9cf-140d-4d1d-bdc1-269a644ba635
 		summarizeBy: none
 		sourceColumn: month
 
 	column year
 		dataType: int64
 		formatString: 0
-		lineageTag: c1e71b4b-7d4a-427f-91d4-09ee07b12959
+		lineageTag: 620e5f0a-4215-4909-bc36-45fdf4ee1819
 		summarizeBy: none
 		sourceColumn: year
 
 	column month_number
 		dataType: int64
 		formatString: 0
-		lineageTag: ba42a6d6-e38d-4936-8beb-0814656d54c3
+		lineageTag: 85b18b20-82b0-431a-b872-3632f80eaee6
 		summarizeBy: none
 		sourceColumn: month_number
 
 	column month_name
 		dataType: string
-		lineageTag: b404c248-3266-4634-847d-de6bf36dad3c
+		lineageTag: 3224dfb4-434f-4326-aa90-2ad3b1a4cec8
 		summarizeBy: none
 		sourceColumn: month_name
 		sortByColumn: month_number
 
 	column quarter
 		dataType: string
-		lineageTag: 504477ba-4c27-4fab-a411-8c228f8fd978
+		lineageTag: f374b27b-a89e-4457-9dd2-8d1533036abd
 		summarizeBy: none
 		sourceColumn: quarter
 
 	column year_month
 		dataType: string
-		lineageTag: a25fdae8-d8a5-472d-819f-287be83f70c4
+		lineageTag: 3782969f-fe43-4e7c-ad07-5ed62b4a7875
 		summarizeBy: none
 		sourceColumn: year_month
 
 	column season
 		dataType: string
-		lineageTag: 70558222-27d7-4637-9f6c-1971e87d2586
+		lineageTag: dc11f173-9f85-41a5-9bbc-ea05664dd3a7
 		summarizeBy: none
 		sourceColumn: season
 

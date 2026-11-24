@@ -1,11 +1,11 @@
 table fact_delay_cause
-	lineageTag: 9007c7dd-0149-4d4d-9140-7504b8d48696
+	lineageTag: febc612b-42ae-407f-a634-e006912a4bb2
 
 	column route_id
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: f33f6b52-af1e-4195-9162-62e13a450d2b
+		lineageTag: 055cf015-b5c1-4cba-ae29-deed80897023
 		summarizeBy: none
 		sourceColumn: route_id
 
@@ -13,13 +13,13 @@ table fact_delay_cause
 		dataType: dateTime
 		isHidden
 		formatString: yyyy-mm-dd
-		lineageTag: 4c905ec8-9857-481a-905c-104a268ef157
+		lineageTag: 82bd7d17-7303-4ecb-8816-589e47f0cf4d
 		summarizeBy: none
 		sourceColumn: month
 
 	column cause
 		dataType: string
-		lineageTag: 34940b7a-faa3-493f-965c-05522ee965e5
+		lineageTag: 876238c9-72ff-43fb-a0bf-0db7fabe4d14
 		summarizeBy: none
 		sourceColumn: cause
 
@@ -27,7 +27,7 @@ table fact_delay_cause
 		dataType: double
 		isHidden
 		formatString: #,0.0
-		lineageTag: 9be770e5-c131-49e7-b5c2-05b23105037a
+		lineageTag: 1e0e151b-2df7-49b4-9faf-724d30ce53db
 		summarizeBy: sum
 		sourceColumn: late_trains_est
 

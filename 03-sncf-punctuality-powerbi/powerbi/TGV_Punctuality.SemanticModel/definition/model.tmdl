@@ -9,3 +9,4 @@ ref table fact_delay_cause
 ref table dim_route
 ref table dim_date
 ref table _Measures
+ref table Outcome

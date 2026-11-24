@@ -1,6 +1,6 @@
 # LinkedIn post (draft)
 
-Post it only after you have built the Power BI report from `POWERBI_BUILD_GUIDE.md`, because the text says you built it. Replace the placeholder `[start date]` in the post. The GitHub and live-dashboard links in the first comment are already filled in. Put the Overview page screenshot (or a short screen recording of you clicking an axis and the whole page filtering) as the first image, and the GitHub link in the first comment rather than in the post body, since LinkedIn tends to show posts with outbound links to fewer people.
+The Power BI report exists in `powerbi/TGV_Punctuality.pbip` (screenshots in `assets/powerbi_*.png`). Open it, check it, and be ready to explain every visual and measure in an interview, because the post says you built it. Use `assets/powerbi_overview.png` as the first image, and `assets/powerbi_overview_filtered.png` as the second image to show the interactivity. Replace the placeholder `[start date]` in the post. The GitHub and live-dashboard links in the first comment are already filled in. Put the Overview page screenshot (or a short screen recording of you clicking an axis and the whole page filtering) as the first image, and the GitHub link in the first comment rather than in the post body, since LinkedIn tends to show posts with outbound links to fewer people.
 
 ---
 

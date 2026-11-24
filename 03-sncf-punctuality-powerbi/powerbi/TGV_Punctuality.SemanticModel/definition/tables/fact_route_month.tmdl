@@ -1,11 +1,11 @@
 table fact_route_month
-	lineageTag: 4d486947-8b27-4d9f-be4d-1c68a4ea5424
+	lineageTag: 91471a67-8051-4829-bb92-db38d0b59a42
 
 	column route_id
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: f62eb76d-e73e-460e-9ee5-8476d20e1419
+		lineageTag: 97542e1c-8003-40b6-90a9-2717ef7887ea
 		summarizeBy: none
 		sourceColumn: route_id
 
@@ -13,7 +13,7 @@ table fact_route_month
 		dataType: dateTime
 		isHidden
 		formatString: yyyy-mm-dd
-		lineageTag: 81915fb3-a5db-4876-92be-3ee5a2613796
+		lineageTag: adb61411-9284-490c-ac40-10c81cfc39b4
 		summarizeBy: none
 		sourceColumn: month
 
@@ -21,7 +21,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 34c3e7f7-ff18-453e-8534-97a1f541ff81
+		lineageTag: 42ff1f5e-194d-4fb7-854a-03589a20cc04
 		summarizeBy: sum
 		sourceColumn: trains_planned
 
@@ -29,7 +29,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: d9f93c09-22f9-46cd-ba0e-28000c6fa15b
+		lineageTag: 96c67d36-3313-4737-a8eb-72e2aa156456
 		summarizeBy: sum
 		sourceColumn: trains_cancelled
 
@@ -37,7 +37,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 5ddc5b4e-6bd7-4608-926a-b1c8af5315c8
+		lineageTag: 0f420ece-36ef-4bc5-8234-2c7d8cb810fb
 		summarizeBy: sum
 		sourceColumn: trains_run
 
@@ -45,7 +45,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 3e751557-3a15-4abe-a5f4-a5ae5cbad15c
+		lineageTag: d41fc8d2-f333-4dcc-84b1-0525baa4ae18
 		summarizeBy: sum
 		sourceColumn: late_departures
 
@@ -53,7 +53,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 314ad2ec-dd02-4c59-9f4d-5afb294c0e20
+		lineageTag: fe711a62-6047-4fbd-9386-66c0b2df18ff
 		summarizeBy: sum
 		sourceColumn: late_arrivals
 
@@ -61,7 +61,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 137acab0-c70d-48b6-83af-e07cfdf0abd8
+		lineageTag: ce08965c-46f4-4b0a-a3c9-0d6dca8b0f06
 		summarizeBy: sum
 		sourceColumn: late_over_15
 
@@ -69,7 +69,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 3c8cd8de-cd50-46cc-9584-baf52ed1c42d
+		lineageTag: 5ececa6a-54d8-4806-a4d6-d9c7db839c09
 		summarizeBy: sum
 		sourceColumn: late_over_30
 
@@ -77,7 +77,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 02ea0a44-503c-40cd-b9b3-84b6e4d7fa3e
+		lineageTag: b697aabf-8017-401a-938f-78f4eae6bcf4
 		summarizeBy: sum
 		sourceColumn: late_over_60
 
@@ -85,7 +85,7 @@ table fact_route_month
 		dataType: double
 		isHidden
 		formatString: 0.0
-		lineageTag: fc8ef877-5dd3-4b0b-ba33-7ad7b52a2f38
+		lineageTag: 4dc88321-67e4-4eee-bc5e-1b14572d203d
 		summarizeBy: sum
 		sourceColumn: avg_delay_late_trains_min
 
@@ -93,7 +93,7 @@ table fact_route_month
 		dataType: int64
 		isHidden
 		formatString: #,0
-		lineageTag: 83b3ba29-a572-4bd6-9060-449cc02af2ac
+		lineageTag: e29ee9bd-034c-448c-bb0f-7d0fa7d1a817
 		summarizeBy: sum
 		sourceColumn: total_delay_minutes
 

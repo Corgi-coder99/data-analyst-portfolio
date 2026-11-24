@@ -1,59 +1,59 @@
 table dim_route
-	lineageTag: f9fb52b9-04cd-4f29-b6c7-a0d53f689313
+	lineageTag: 0c67899a-1bd2-4b50-a9d4-7136e32e3385
 
 	column route_id
 		dataType: int64
 		formatString: 0
-		lineageTag: 582097c3-af9b-4e17-90cb-b8111db31d9a
+		lineageTag: e8432f38-69f0-47d4-9a5c-ebddfed1a0f4
 		summarizeBy: none
 		sourceColumn: route_id
 
 	column route
 		dataType: string
-		lineageTag: 2030d7ac-8c63-40ca-a86f-9b3e960fda35
+		lineageTag: 7c32995d-14d8-46b0-92e8-f2dd8ed0db4a
 		summarizeBy: none
 		sourceColumn: route
 
 	column dep
 		dataType: string
-		lineageTag: 80de60fd-6a7b-402b-95be-a320a3e037a8
+		lineageTag: 67e4f533-9978-4e14-94ad-c358db985cac
 		summarizeBy: none
 		sourceColumn: dep
 
 	column arr
 		dataType: string
-		lineageTag: 5f7581fa-fff5-44e2-b05e-3c3f7a6f6e12
+		lineageTag: 054c3176-3a20-466f-8a07-db1c3f0ab439
 		summarizeBy: none
 		sourceColumn: arr
 
 	column service
 		dataType: string
-		lineageTag: 1774bc70-d19a-4259-993b-fe6138a9a48a
+		lineageTag: 40868bc1-7325-487e-9172-94a3b8809537
 		summarizeBy: none
 		sourceColumn: service
 
 	column axis
 		dataType: string
-		lineageTag: ec7284fc-6069-404f-8ec5-d7f9b9aba471
+		lineageTag: 1af4d2b6-4caa-4e2f-9a7f-f4991750af21
 		summarizeBy: none
 		sourceColumn: axis
 
 	column is_paris_route
 		dataType: boolean
-		lineageTag: 9532e47c-a23c-423f-88a4-6dbdf32181ec
+		lineageTag: 36c2b495-4f41-4a7e-a781-f30c6dcb56b9
 		summarizeBy: none
 		sourceColumn: is_paris_route
 
 	column avg_journey_min
 		dataType: double
 		formatString: 0
-		lineageTag: 4b462421-c59d-456a-964a-eca46a12b719
+		lineageTag: d0c48396-0e29-4e7c-b2a5-e3e8da4966b8
 		summarizeBy: none
 		sourceColumn: avg_journey_min
 
 	column journey_band
 		dataType: string
-		lineageTag: 4c53d4bd-6004-45bf-9c74-184a9d141015
+		lineageTag: 31b4ed23-34f7-43cd-a9ff-ec629c54d536
 		summarizeBy: none
 		sourceColumn: journey_band
 

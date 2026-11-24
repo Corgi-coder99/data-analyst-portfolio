@@ -5,7 +5,25 @@
       "name": "CY24SU10",
       "reportVersionAtImport": "5.61",
       "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "sncf_theme.json",
+      "reportVersionAtImport": "5.61",
+      "type": "RegisteredResources"
     }
   },
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "sncf_theme.json",
+          "path": "sncf_theme.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
   "layoutOptimization": "None"
 }

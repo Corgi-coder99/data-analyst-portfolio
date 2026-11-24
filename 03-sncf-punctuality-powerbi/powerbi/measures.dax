@@ -69,3 +69,15 @@ SWITCH (
     [Late Arrival Rate] >= 0.14, "#E8A33D",
     "#1B8A8F"
 )
+
+// ---------- Donut: outcome of every planned train (uses the small disconnected table Outcome) ----------
+Outcome Trains =
+SWITCH (
+    SELECTEDVALUE ( Outcome[Outcome] ),
+    "On time", [On Time Trains],
+    "Late, under 15 min", [Late Arrivals] - [Late Over 15],
+    "Late 15 to 30 min", [Late Over 15] - [Late Over 30],
+    "Late 30 to 60 min", [Late Over 30] - [Late Over 60],
+    "Late over 60 min", [Late Over 60],
+    "Cancelled", [Trains Cancelled]
+)

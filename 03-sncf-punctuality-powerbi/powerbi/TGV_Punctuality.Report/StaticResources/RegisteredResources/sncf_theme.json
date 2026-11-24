@@ -1,0 +1,30 @@
+{
+  "name": "TGV Punctuality",
+  "dataColors": ["#2F5FA8", "#C60C30", "#1B8A8F", "#E8A33D", "#7A5CA8", "#5B6B82", "#E07A3D", "#7D0A22"],
+  "background": "#FFFFFF",
+  "foreground": "#0B1F3A",
+  "tableAccent": "#0B1F3A",
+  "good": "#1B8A8F",
+  "neutral": "#E8A33D",
+  "bad": "#C60C30",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#0B1F3A" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#33435C" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#0B1F3A" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#0B1F3A" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E3E8F0" } }, "radius": 10 }],
+        "title": [{ "show": true, "fontColor": { "solid": { "color": "#0B1F3A" } }, "fontSize": 14 }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F4F6FA" } }, "transparency": 0 }]
+      }
+    }
+  }
+}
