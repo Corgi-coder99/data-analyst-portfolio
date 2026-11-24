@@ -1,51 +1,51 @@
 table dim_date
-	lineageTag: 560dbebc-8acb-4533-86e7-90075d4d2edc
+	lineageTag: 48ef84dc-bbb9-4a53-b7d2-8c46d82d5f2a
 	dataCategory: Time
 
 	column month
 		dataType: dateTime
 		isKey
 		formatString: yyyy-mm-dd
-		lineageTag: 036ca128-7752-4539-8a87-9bc3b16ce625
+		lineageTag: 7e9295e3-9ce9-4de3-a3ba-898419005a88
 		summarizeBy: none
 		sourceColumn: month
 
 	column year
 		dataType: int64
 		formatString: 0
-		lineageTag: bb4cda9d-ab75-42ca-b905-ebd9f193e0d6
+		lineageTag: c1e71b4b-7d4a-427f-91d4-09ee07b12959
 		summarizeBy: none
 		sourceColumn: year
 
 	column month_number
 		dataType: int64
 		formatString: 0
-		lineageTag: 935cb558-ed83-4eac-8ab9-69f9217819b5
+		lineageTag: ba42a6d6-e38d-4936-8beb-0814656d54c3
 		summarizeBy: none
 		sourceColumn: month_number
 
 	column month_name
 		dataType: string
-		lineageTag: faa0dd6c-0f99-433f-b9b4-d1369c9ea6db
+		lineageTag: b404c248-3266-4634-847d-de6bf36dad3c
 		summarizeBy: none
 		sourceColumn: month_name
 		sortByColumn: month_number
 
 	column quarter
 		dataType: string
-		lineageTag: 812e2f10-04a1-4900-ac04-dc552ac5d04d
+		lineageTag: 504477ba-4c27-4fab-a411-8c228f8fd978
 		summarizeBy: none
 		sourceColumn: quarter
 
 	column year_month
 		dataType: string
-		lineageTag: 99534975-7b66-406c-b4c5-f5f92bb23172
+		lineageTag: a25fdae8-d8a5-472d-819f-287be83f70c4
 		summarizeBy: none
 		sourceColumn: year_month
 
 	column season
 		dataType: string
-		lineageTag: a7defee8-1c8a-4855-9259-c9002e0fff40
+		lineageTag: 70558222-27d7-4637-9f6c-1971e87d2586
 		summarizeBy: none
 		sourceColumn: season
 
@@ -53,7 +53,7 @@ table dim_date
 		mode: import
 		source =
 				let
-					Source = Csv.Document(File.Contents(DataFolder & "\dim_date.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Source = Csv.Document(Binary.Decompress(Binary.FromText("XdFPaxtXGMXhfaHf5Ab0/rvWuwyULgJNMV50GZQg0kAku45VyLevNLXnzDmgxdw5vxHDPKfH88vf4+fx8DxOt8tP58vp83E9HE7H8c/l8PxyvXWLPi33x4/j4cfj+ddffGf7dzu7/sbtctj4cDiP+/9Pt7t/fTtfH30LfQ19/H78jNAljDWM8cf11dYwxsPT87fz17cw1zDH+6dr6K9hSlhrWNd//ImwJJxrOMeHyxnhHA+X0wnveLeGd9fw+7iP1/BOwv0a7sf7y1eEewl7DXs8HJ8Q9vW5l8vp7YPbDh98N/788jLuc7wuUm5obHx8/BelSQkb8/Hb8QtKwmlwN3G3cDe4m7hbuBvcTdwt3A3uJu4W7gZ3E3cLd4O7ibuFu8HdxN3C3eBu4m7hbnA3cbdwN7ibuVu4G9zN3C3cDe5m7mZu363cvttyL4OEvoYb7mWQMNZww70MG5zbOddww70MEtYabriXQcK5hhvuZdjg3M53a7jhXgYJ92u44V4GCXsNN9zLsKG5nt+4bx98w70sUm5oNtzLIiVsttzLssUxcBtxm3AbuI24TbgN3EbcJtwGbiNuE24DtxG3CbeB24jbhNvAbcRtwm3gNuI24TZwG3GbcBu4jblNuA3cxtwm3AZuY24Tbge3E7cLt4PbiduF28HtxO3C7eB24nbhdnA7cbtwO7iduF24HdxO3C7cDm4nbhduB7cTtwu3g9uZ24Xbwe3M7cLt4HbmduEOcAdxh3AHuIO4Q7gD3EHcIdwB7iDuEO4AdxB3CHeAO4g7hDvAHcQdwh3gDuIO4Q5wB3GHcAe4g7lDuAPcwdwh3AHuYO4Q7gR3EncKd4I7iTuFO8GdxJ3CneBO4k7hTnAncadwJ7iTuFO4E9xJ3CncCe4k7hTuBHcSdwp3gjuZO4U7wZ3MncKd4E7mTuEucBdxl3AXuIu4S7gL3EXcJdwF7iLuEu4CdxF3CXeBu4i7hLvAXcRdwl3gLuIu4S5wF3GXcBe4i7lLuAvcxdwl3AXuYu4S7gnuSdxTuCe4J3FP4Z7gnsQ9hXuCexL3FO4J7kncU7gnuCdxT+Ge4J7EPYV7gnsS9xTuCe5J3HPL/R8=", BinaryEncoding.Base64), Compression.Deflate), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 					Typed = Table.TransformColumnTypes(Promoted, {{"month", type date}, {"year", Int64.Type}, {"month_number", Int64.Type}, {"month_name", type text}, {"quarter", type text}, {"year_month", type text}, {"season", type text}}, "en-US")
 				in

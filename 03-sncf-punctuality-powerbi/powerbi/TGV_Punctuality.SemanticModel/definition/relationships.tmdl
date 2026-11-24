@@ -1,15 +1,15 @@
-relationship 6f8f816a-a194-48d8-8fea-2651c072fc4d
+relationship 7a0d4d66-e4d6-4506-aff7-196e3eb8e0b6
 	fromColumn: fact_route_month.route_id
 	toColumn: dim_route.route_id
 
-relationship 36250e78-6333-43f6-98bd-cacc764c3e79
+relationship e20ebf2a-c35e-426e-89ef-d363be048954
 	fromColumn: fact_route_month.month
 	toColumn: dim_date.month
 
-relationship 241aed51-3f5c-46a0-a26b-e2e740fc3417
+relationship 11595c59-2868-41c2-8d05-79cd5cdef3c9
 	fromColumn: fact_delay_cause.route_id
 	toColumn: dim_route.route_id
 
-relationship 79b327ed-4c86-44ba-9131-d6ddada965b7
+relationship d8c06000-9997-44e4-be21-bbcc7f62343b
 	fromColumn: fact_delay_cause.month
 	toColumn: dim_date.month

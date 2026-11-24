@@ -2,6 +2,7 @@
 
 What you get: 4 tables loaded from data/processed/*.csv, the 4 relationships, a date table, hidden raw
 columns, and every DAX measure from powerbi/measures.dax (single source of truth, parsed here).
+The data is embedded in the model (compressed inline M), so nothing depends on a file path.
 The report has the three empty pages (Home, Overview, Routes & Causes): you add the visuals.
 
 Usage (from project root):  python scripts/make_pbip.py
@@ -9,10 +10,12 @@ Then open powerbi/TGV_Punctuality.pbip in Power BI Desktop.
 Needs Power BI Desktop with the "Power BI Project (.pbip) save option" preview feature enabled
 (File > Options and settings > Options > Preview features).
 """
+import base64
 import csv
 import json
 import re
 import uuid
+import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -87,8 +90,11 @@ def table_tmdl(table):
             lines.append("\t\tsortByColumn: month_number")
         lines.append("")
     types = ", ".join('{"%s", %s}' % (c, col_type(table, c)[1]) for c in cols)
+    raw = (PROC / f"{table}.csv").read_bytes()
+    deflate = zlib.compressobj(9, zlib.DEFLATED, -15)  # raw deflate, the same as M Compression.Deflate
+    b64 = base64.b64encode(deflate.compress(raw) + deflate.flush()).decode("ascii")
     lines += [f"\tpartition {table} = m", "\t\tmode: import", "\t\tsource =", "\t\t\t\tlet",
-              f'\t\t\t\t\tSource = Csv.Document(File.Contents(DataFolder & "\\{table}.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),',
+              f'					Source = Csv.Document(Binary.Decompress(Binary.FromText("{b64}", BinaryEncoding.Base64), Compression.Deflate), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),',
               "\t\t\t\t\tPromoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
               f'\t\t\t\t\tTyped = Table.TransformColumnTypes(Promoted, {{{types}}}, "en-US")',
               "\t\t\t\tin", "\t\t\t\t\tTyped", "", "\tannotation PBI_ResultType = Table", ""]
@@ -154,17 +160,13 @@ def write(path, content):
 
 
 def main():
-    data_folder = str(PROC)
     write(OUT / f"{NAME}.pbip", json.dumps({"version": "1.0", "artifacts": [{"report": {"path": f"{NAME}.Report"}}],
                                              "settings": {"enableAutoRecovery": True}}, indent=2))
     write(SM / "definition.pbism", json.dumps({"version": "4.0", "settings": {}}, indent=2))
     write(SM / "definition" / "database.tmdl", "database\n\tcompatibilityLevel: 1600\n")
     write(SM / "definition" / "model.tmdl",
           "model Model\n\tculture: en-US\n\tdefaultPowerBIDataSourceVersion: powerBI_V3\n\tdiscourageImplicitMeasures\n"
-          "\tsourceQueryCulture: en-US\n\n" + "".join(f"ref table {t}\n" for t in TABLES + ["_Measures"]) + "ref expression DataFolder\n")
-    write(SM / "definition" / "expressions.tmdl",
-          'expression DataFolder = "%s" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]\n'
-          "\tlineageTag: %s\n" % (data_folder.replace("\\", "\\\\"), guid()))
+          "\tsourceQueryCulture: en-US\n\n" + "".join(f"ref table {t}\n" for t in TABLES + ["_Measures"]))
     for t in TABLES:
         write(SM / "definition" / "tables" / f"{t}.tmdl", table_tmdl(t))
     mt, names = measures_table()

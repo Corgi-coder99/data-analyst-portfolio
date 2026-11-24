@@ -6,17 +6,18 @@ When you finish, check your numbers against the "Reference values" at the bottom
 
 ## Quick start: open the prebuilt model (saves about an hour)
 
-`powerbi/TGV_Punctuality.pbip` is a Power BI Project with steps 1 to 3 below already done: the four tables, the four relationships, the date table, and all 24 DAX measures. It also has the three empty pages (Home, Overview, Routes & Causes). You only build the visuals (steps 4 to 8).
+`powerbi/TGV_Punctuality.pbip` is a Power BI Project with steps 1 to 3 below already done: the four tables, the four relationships, the date table, and all 24 DAX measures. The data is embedded in the model, so there is no file path to set. It also has the three empty pages (Home, Overview, Routes & Causes). You only build the visuals (steps 4 to 8).
 
-1. In Power BI Desktop: **File > Options and settings > Options > Preview features**, tick **Power BI Project (.pbip) save option**, restart Power BI.
-2. Open `powerbi/TGV_Punctuality.pbip`.
-3. The data is not stored in the project. Check where the CSVs are: **Home > Transform data > Edit parameters**, and set `DataFolder` to the full path of `data/processed` on your machine (the default is the path on the machine where the project was generated).
-4. Click **Refresh**. The tables load.
-5. Check the model against the reference values at the bottom of this guide. Then continue at step 4 (Theme).
+1. In Power BI Desktop: **File > Options and settings > Options > Preview features**, tick **Power BI Project (.pbip) save option** if it is not already on, then restart Power BI.
+2. Open `powerbi/TGV_Punctuality.pbip`. The Data pane shows the tables but they are empty until you refresh. You may see two yellow bars saying relationships or tables need to be refreshed.
+3. Click **Home > Refresh** once and wait about 10 seconds. The bars disappear and the tables are filled.
+4. Check the model against the reference values at the bottom of this guide, then continue at step 4 (Theme).
 
-To regenerate the project after changing `powerbi/measures.dax` or the data: `python scripts/make_pbip.py` (it overwrites the `.pbip` files, so do not run it after you started building visuals).
+To regenerate the project after changing `powerbi/measures.dax` or the data: `python scripts/make_pbip.py`. It overwrites the model files, so do not run it after you started building visuals.
 
-How it was checked: the generated project was opened in Power BI Desktop, refreshed, and the model was queried with DAX. The totals, the filtered reference line, the year-over-year measure and the cause shares matched the reference values below. The empty report pages were not inspected visually.
+Do not use File > Export > Power BI template on this project: the template exported from it fails to load ("cyclic reference" on `dim_route`). Save your work as a `.pbip` (or build a new `.pbix` from scratch by following steps 1 to 3 below).
+
+How it was checked: the project was opened in Power BI Desktop, **Home > Refresh** was clicked, and the model was queried with DAX. The totals, the filtered reference line, the year-over-year measure and the cause shares matched the reference values below. The three report pages open empty, as intended.
 
 ## 1. Load the data
 

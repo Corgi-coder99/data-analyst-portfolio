@@ -84,4 +84,4 @@ Full log with row counts: [`docs/DATA_QUALITY_LOG.md`](./docs/DATA_QUALITY_LOG.m
 
 ## 7. Build the Power BI report
 
-Open [`powerbi/TGV_Punctuality.pbip`](./powerbi/TGV_Punctuality.pbip), a Power BI Project with the model, relationships and all 24 DAX measures already in place, then build the three pages with [`docs/POWERBI_BUILD_GUIDE.md`](./docs/POWERBI_BUILD_GUIDE.md). Or build everything from scratch: load the four CSVs, create the four relationships, paste [`powerbi/measures.dax`](./powerbi/measures.dax) and import the theme. Reference values at the end of the guide let you check your report.
+Open [`powerbi/TGV_Punctuality.pbip`](./powerbi/TGV_Punctuality.pbip), a Power BI Project with the data, model, relationships and all 24 DAX measures already in place (click Home > Refresh once after opening), then build the three pages with [`docs/POWERBI_BUILD_GUIDE.md`](./docs/POWERBI_BUILD_GUIDE.md). Or build everything from scratch: load the four CSVs, create the four relationships, paste [`powerbi/measures.dax`](./powerbi/measures.dax) and import the theme. Reference values at the end of the guide let you check your report.

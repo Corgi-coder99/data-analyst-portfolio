@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "TGV_Punctuality"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "158bf6ef-252c-495a-8ec8-8353d7b79277"
+  }
+}

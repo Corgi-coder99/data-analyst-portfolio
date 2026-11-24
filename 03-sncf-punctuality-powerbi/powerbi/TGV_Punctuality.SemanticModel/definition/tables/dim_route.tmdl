@@ -1,59 +1,59 @@
 table dim_route
-	lineageTag: 2970b413-033b-4f28-a33b-d63cec5ffc95
+	lineageTag: f9fb52b9-04cd-4f29-b6c7-a0d53f689313
 
 	column route_id
 		dataType: int64
 		formatString: 0
-		lineageTag: 37406b17-2138-41f9-a6c4-8a3eb7db3ca6
+		lineageTag: 582097c3-af9b-4e17-90cb-b8111db31d9a
 		summarizeBy: none
 		sourceColumn: route_id
 
 	column route
 		dataType: string
-		lineageTag: 0fd15a28-699b-4738-9760-5d8209431e86
+		lineageTag: 2030d7ac-8c63-40ca-a86f-9b3e960fda35
 		summarizeBy: none
 		sourceColumn: route
 
 	column dep
 		dataType: string
-		lineageTag: a65e46ef-7050-4054-935a-85709dc0bf2e
+		lineageTag: 80de60fd-6a7b-402b-95be-a320a3e037a8
 		summarizeBy: none
 		sourceColumn: dep
 
 	column arr
 		dataType: string
-		lineageTag: a7308a6c-36c9-4b26-941f-0769e8a151c6
+		lineageTag: 5f7581fa-fff5-44e2-b05e-3c3f7a6f6e12
 		summarizeBy: none
 		sourceColumn: arr
 
 	column service
 		dataType: string
-		lineageTag: 9eb6f1a3-e682-4083-99f7-b1fc082ff022
+		lineageTag: 1774bc70-d19a-4259-993b-fe6138a9a48a
 		summarizeBy: none
 		sourceColumn: service
 
 	column axis
 		dataType: string
-		lineageTag: e014fb4f-bbde-4774-b007-d740ba04325d
+		lineageTag: ec7284fc-6069-404f-8ec5-d7f9b9aba471
 		summarizeBy: none
 		sourceColumn: axis
 
 	column is_paris_route
 		dataType: boolean
-		lineageTag: e4233b02-cca6-4e66-98e2-7bee599e4134
+		lineageTag: 9532e47c-a23c-423f-88a4-6dbdf32181ec
 		summarizeBy: none
 		sourceColumn: is_paris_route
 
 	column avg_journey_min
 		dataType: double
 		formatString: 0
-		lineageTag: 8bb708a2-1b88-485c-8d9b-69b2507035a3
+		lineageTag: 4b462421-c59d-456a-964a-eca46a12b719
 		summarizeBy: none
 		sourceColumn: avg_journey_min
 
 	column journey_band
 		dataType: string
-		lineageTag: b03070ed-3a9c-4c03-875d-716d0997db02
+		lineageTag: 4c53d4bd-6004-45bf-9c74-184a9d141015
 		summarizeBy: none
 		sourceColumn: journey_band
 
@@ -61,7 +61,7 @@ table dim_route
 		mode: import
 		source =
 				let
-					Source = Csv.Document(File.Contents(DataFolder & "\dim_route.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Source = Csv.Document(Binary.Decompress(Binary.FromText("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", BinaryEncoding.Base64), Compression.Deflate), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 					Typed = Table.TransformColumnTypes(Promoted, {{"route_id", Int64.Type}, {"route", type text}, {"dep", type text}, {"arr", type text}, {"service", type text}, {"axis", type text}, {"is_paris_route", type logical}, {"avg_journey_min", type number}, {"journey_band", type text}}, "en-US")
 				in
